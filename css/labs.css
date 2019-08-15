@@ -1,0 +1,48 @@
+body {
+	color: black;
+	font: normal 0.8em Tahoma,sans-serif;
+	width: 650px;
+}
+
+.content {
+}
+
+
+.content p {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
+	padding-left: 30px;
+}
+
+.content tt {
+	font: normal 1.0em Courier, Arial, sans-serif;
+}
+
+
+.content pre {
+	font-size: 10pt;
+	margin-left:10px;
+	padding:5px;
+	border-style:solid;
+	border-width:1px;
+	color:dark-gray;
+	background-color:F3F3F3;
+}
+
+.content .underhead p {
+	font-weight: bold;
+	border-bottom: 1px solid black;
+	padding-left: 0;
+	margin-top: 20px;
+}
+
+.content ul li, ol li {
+	margin-left: 5px;
+	padding-left: 5px;
+}
+
+.content ul li ul, ol li ol {
+	margin-left: 12px;
+	padding-left: 0px;
+}
