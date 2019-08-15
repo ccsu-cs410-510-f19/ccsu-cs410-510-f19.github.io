@@ -1,0 +1,382 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="../css/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>Architectural Design</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 6</p>
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p><b>Architectural design</b> is a process for identifying the sub-systems making up a system and the framework for sub-system control and communication.
+The output of this design process is a description of the software architecture.
+Architectural design is an early stage of the system design process.
+It represents the link between specification and design processes and is often carried out in parallel with some specification activities.
+It involves identifying major system components and their communications.</p>
+
+<p>Software architectures can be designed at <b>two levels of abstraction</b>:</p>
+<ul>
+    <li><b>Architecture in the small</b> is concerned with the architecture of individual programs. At this level, we are concerned with the way that an individual program is decomposed into components.  </li>
+    <li><b>Architecture in the large</b> is concerned with the architecture of complex enterprise systems that include other systems, programs, and program components. These enterprise systems are distributed over different computers, which may be owned and managed by different companies.  </li>
+</ul>
+
+<p>Three <b>advantages</b> of explicitly designing and documenting software architecture:</p>
+<ul>
+    <li><b>Stakeholder communication</b>: Architecture may be used as a focus of discussion by system stakeholders.</li>
+    <li><b>System analysis</b>: Well-documented architecture enables the analysis of whether the system can meet its non-functional requirements.</li>
+    <li><b>Large-scale reuse</b>: The architecture may be reusable across a range of systems or entire lines of products.</li>
+</ul>
+
+<p>Software architecture is most often represented using simple, informal <b>block diagrams</b> showing entities and relationships. <b>Pros</b>: simple, useful for communication with stakeholders, great for project planning. <b>Cons</b>: lack of semantics, types of relationships between entities, visible properties of entities in the architecture. </p>
+
+
+<p><b>Uses</b> of architectural models:</p>
+<dl>
+    <dt>As a way of facilitating discussion about the system design </dt>
+    <dd>A high-level architectural view of a system is useful for communication with system stakeholders and project planning because it is not cluttered with detail. Stakeholders can relate to it and understand an abstract view of the system. They can then discuss the system as a whole without being confused by detail. </dd>
+
+    <dt>As a way of documenting an architecture that has been designed </dt>
+    <dd>The aim here is to produce a complete system model that shows the different components in a system, their interfaces and their connections. </dd>
+</dl>
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Architectural design decisions</p></div>
+
+<p>Architectural design is a <b>creative process</b> so the process differs depending on the type of system being developed.
+However, a number of <b>common decisions</b> span all design processes and these decisions affect the non-functional characteristics of the system:</p>
+<ul>
+    <li>Is there a generic application architecture that can be used?</li>
+    <li>How will the system be distributed?</li>
+    <li>What architectural styles are appropriate?</li>
+    <li>What approach will be used to structure the system?</li>
+    <li>How will the system be decomposed into modules?</li>
+    <li>What control strategy should be used?</li>
+    <li>How will the architectural design be evaluated?</li>
+    <li>How should the architecture be documented?</li>
+</ul>
+
+<p>Systems in the same domain often have <b>similar architectures</b> that reflect domain concepts.
+Application product lines are built around a core architecture with variants that satisfy particular customer requirements.
+The architecture of a system may be designed around one of more <b>architectural patterns/styles</b>, which capture the essence of an architecture and can be instantiated in different ways.</p>
+
+<p>The particular architectural style should depend on the <b>non-functional system requirements</b>:</p>
+<ul>
+    <li><b>Performance</b>: localize critical operations and minimize communications. Use large rather than fine-grain components.</li>
+    <li><b>Security</b>: use a layered architecture with critical assets in the inner layers.</li>
+    <li><b>Safety</b>: localize safety-critical features in a small number of sub-systems.</li>
+    <li><b>Availability</b>: include redundant components and mechanisms for fault tolerance.</li>
+    <li><b>Maintainability</b>: use fine-grain, replaceable components.</li>
+</ul>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Architectural views</p></div>
+
+<p>Each architectural model only shows one view or perspective of the system.
+It might show how a system is decomposed into modules, how the run-time processes interact or the different ways in which system components are distributed across a network. For both design and documentation, you usually need to present multiple views of the software architecture. </p>
+
+<p><b>4+1 view</b> model of software architecture:</p>
+<ul>
+    <li>A <b>logical</b> view, which shows the key abstractions in the system as objects or object classes. </li>
+    <li>A <b>process</b> view, which shows how, at run-time, the system is composed of interacting processes. </li>
+    <li>A <b>development</b> view, which shows how the software is decomposed for development.</li>
+    <li>A <b>physical</b> view, which shows the system hardware and how software components are distributed across the processors in the system.</li>
+    <li>Related using <b>use cases</b> or scenarios (+1). </li>
+</ul>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Architectural patterns</p></div>
+
+<p>Patterns are a means of representing, sharing and reusing knowledge.
+An architectural pattern is a <b>stylized description of a good design practice</b>, which has been tried and tested in different environments.
+Patterns should include information about when they are and when the are not useful.
+Patterns may be represented using tabular and graphical descriptions.</p>
+
+
+
+
+<div class="Underhead">
+<p>Model-View-Controller</p></div>
+
+<ul>
+	<li>Serves as a basis of interaction management in many web-based systems.</li>
+	<li>Decouples three major interconnected components:</li>
+	<ul>
+		<li>The <u>model</u> is the central component of the pattern that directly manages the data, logic and rules of the application. It is the application's dynamic data structure, independent of the user interface.</li>
+		<li>A <u>view</u> can be any output representation of information, such as a chart or a diagram. Multiple views of the same information are possible.</li>
+		<li>The <u>controller</u> accepts input and converts it to commands for the model or view.</li>
+	</ul>
+	<li>Supported by most language frameworks.</li>
+</ul>
+
+<p><img src="./06-ArchitecturalDesign_files/06-mvc.png" width="60%"></p>
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Pattern name</b></td>
+        <td><b>Model-View-Controller (MVC)</b></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>Separates presentation and interaction from the system data. The system is structured into three logical components that interact with each other. The Model component manages the system data and associated operations on that data. The View component defines and manages how the data is presented to the user. The Controller component manages user interaction (e.g., key presses, mouse clicks, etc.) and passes these interactions to the View and the Model.</td>
+    </tr>
+    <tr>
+        <td>Problem description</td>
+        <td>The display presented to the user frequently changes over time
+in response to input or computation.  Different users have different needs for how they want to view
+the program.s information. The system needs to reflect data changes to all users in the way that they
+want to view them, while making it easy to make changes to the user interface.</td>
+    </tr>
+    <tr>
+        <td>Solution description</td>
+        <td>This involves separating the data being manipulated from the manipulation logic and the details of display using three components:
+	        Model (a problem-domain component with data and operations, independent of the user interface),
+	        View (a data display component), and
+	        Controller (a component that receives and acts on user input).</td>
+    </tr>
+    <tr>
+        <td>Consequences</td>
+        <td>Advantages: views and controllers can be easily be added, removed, or changed; views can be added or changed during execution;
+	        user interface components can be changed, even at runtime. Disadvantages: views and controller are often hard to separate;
+	        frequent updates may slow data display and degrade user interface performance;
+	        the MVC style makes user interface components (views, controllers) highly dependent on model components.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+
+<div class="Underhead">
+<p>Layered architecture</p></div>
+<ul>
+    <li>Used to model the interfacing of sub-systems.</li>
+    <li>Organizes the system into a set of layers (or abstract machines) each of which provide a set of services.</li>
+    <li>Supports the incremental development of sub-systems in different layers. When a layer interface changes, only the adjacent layer is affected.</li>
+    <li>However, often artificial to structure systems in this way.</li>
+</ul>
+
+<p><img src="./06-ArchitecturalDesign_files/06-layered_architecture.png" width="45%"></p>
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Name<b></b></b></td>
+        <td><b>Layered architecture</b></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>Organizes the system into layers with related functionality associated with each layer. A layer provides services to the layer above it so the lowest-level layers represent core services that are likely to be used throughout the system. </td>
+    </tr>
+    <tr>
+        <td>When used</td>
+        <td>Used when building new facilities on top of existing systems; when the development is spread across several teams with each team responsibility for a layer of functionality; when there is a requirement for multi-level security.</td>
+    </tr>
+    <tr>
+        <td>Advantages</td>
+        <td>Allows replacement of entire layers so long as the interface is maintained. Redundant facilities (e.g., authentication) can be provided in each layer to increase the dependability of the system.</td>
+    </tr>
+    <tr>
+        <td>Disadvantages</td>
+        <td>In practice, providing a clean separation between layers is often difficult and a high-level layer may have to interact directly with lower-level layers rather than through the layer immediately below it. Performance can be a problem because of multiple levels of interpretation of a service request as it is processed at each layer.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Repository architecture</p></div>
+<ul>
+    <li>Sub-systems must exchange data. This may be done in two ways:</li>
+    <ul>
+        <li>Shared data is held in a central database or repository and may be accessed by all sub-systems;</li>
+        <li>Each sub-system maintains its own database and passes data explicitly to other sub-systems.</li>
+    </ul>
+    <li>When large amounts of data are to be shared, the repository model of sharing is most commonly used a this is an efficient data sharing mechanism.</li>
+</ul>
+
+
+<p><img src="./06-ArchitecturalDesign_files/06-repository_architecture.png" width="70%"></p>
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Name</b></td>
+        <td><b>Repository</b></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>All data in a system is managed in a central repository that is accessible to all system components. Components do not interact directly, only through the repository.</td>
+    </tr>
+    <tr>
+        <td>When used</td>
+        <td>You should use this pattern when you have a system in which large volumes of information are generated that has to be stored for a long time. You may also use it in data-driven systems where the inclusion of data in the repository triggers an action or tool.</td>
+    </tr>
+    <tr>
+        <td>Advantages</td>
+        <td>Components can be independent--they do not need to know of the existence of other components. Changes made by one component can be propagated to all components. All data can be managed consistently (e.g., backups done at the same time) as it is all in one place.</td>
+    </tr>
+    <tr>
+        <td>Disadvantages</td>
+        <td>The repository is a single point of failure so problems in the repository affect the whole system. May be inefficiencies in organizing all communication through the repository. Distributing the repository across several computers may be difficult.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Client-server architecture</p></div>
+<ul>
+    <li>Distributed system model which shows how data and processing is distributed across a range of components, but can also be implemented on a single computer.</li>
+    <li>Set of stand-alone servers which provide specific services such as printing, data management, etc.</li>
+    <li>Set of clients which call on these services.</li>
+    <li>Network which allows clients to access servers.</li>
+</ul>
+
+<p><img src="./06-ArchitecturalDesign_files/06-client_server_architecture.png" width="70%"></p>
+
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Name</b></td>
+        <td><b>Client-server</b></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>In a client-server architecture, the functionality of the system is organized into services, with each service delivered from a separate server. Clients are users of these services and access servers to make use of them.</td>
+    </tr>
+    <tr>
+        <td>When used</td>
+        <td>Used when data in a shared database has to be accessed from a range of locations. Because servers can be replicated, may also be used when the load on a system is variable.</td>
+    </tr>
+    <tr>
+        <td>Advantages</td>
+        <td>The principal advantage of this model is that servers can be distributed across a network. General functionality (e.g., a printing service) can be available to all clients and does not need to be implemented by all services.</td>
+    </tr>
+    <tr>
+        <td>Disadvantages</td>
+        <td>Each service is a single point of failure so susceptible to denial of service attacks or server failure. Performance may be unpredictable because it depends on the network as well as the system. May be management problems if servers are owned by different organizations.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+<div class="Underhead">
+<p>Pipe and filter architecture</p></div>
+
+<ul>
+    <li>Functional transformations process their inputs to produce outputs.</li>
+    <li>May be referred to as a pipe and filter model (as in UNIX shell).</li>
+    <li>Variants of this approach are very common. When transformations are sequential, this is a batch sequential model which is extensively used in data processing systems.</li>
+    <li>Not really suitable for interactive systems.</li>
+</ul>
+
+<p><img src="./06-ArchitecturalDesign_files/06-pipe_filters_architecture.png" width="95%"></p>
+
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Name</b></td>
+        <td><b>Pipe and filter</b></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>The processing of the data in a system is organized so that each processing component (filter) is discrete and carries out one type of data transformation. The data flows (as in a pipe) from one component to another for processing.</td>
+    </tr>
+    <tr>
+        <td>When used</td>
+        <td>Commonly used in data processing applications (both batch- and transaction-based) where inputs are processed in separate stages to generate related outputs.</td>
+    </tr>
+    <tr>
+        <td>Advantages</td>
+        <td>Easy to understand and supports transformation reuse. Workflow style matches the structure of many business processes. Evolution by adding transformations is straightforward. Can be implemented as either a sequential or concurrent system.</td>
+    </tr>
+    <tr>
+        <td>Disadvantages</td>
+        <td>The format for data transfer has to be agreed upon between communicating transformations. Each transformation must parse its input and unparse its output to the agreed form. This increases system overhead and may mean that it is impossible to reuse functional transformations that use incompatible data structures.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+
+<div class="Underhead">
+<p>Application architectures</p></div>
+
+<p>Application systems are designed to meet an organizational need.
+As businesses have much in common, their application systems also tend to have a common architecture that reflects the application requirements.
+A <b>generic application architecture</b> is an architecture for a type of software system that may be configured and adapted to create a system that meets specific requirements. application architectures can be used as a:</p>
+<ul>
+    <li>Starting point for architectural design.</li>
+    <li>Design checklist.</li>
+    <li>Way of organizing the work of the development team.</li>
+    <li>Means of assessing components for reuse.</li>
+    <li>Vocabulary for talking about application types.</li>
+</ul>
+
+<p>Examples of <b>application types</b>:</p>
+<dl>
+    <dt>Data processing applications</dt>
+    <dd>Data driven applications that process data in batches without explicit user intervention during the processing.</dd>
+
+    <dt>Transaction processing applications</dt>
+    <dd>Data-centred applications that process user requests and update information in a system database.</dd>
+
+    <dt>Event processing systems</dt>
+    <dd>Applications where system actions depend on interpreting events from the system's environment.</dd>
+
+    <dt>Language processing systems</dt>
+    <dd>Applications where the users' intentions are specified in a formal language that is processed and interpreted by the system.</dd>
+</dl>
+
+
+
+</div>
+
+
+</body></html>

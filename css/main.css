@@ -1555,7 +1555,7 @@
 	}
 
 	body, input, select, textarea {
-		color: #888;
+		color: #101010;
 		text-align: left; /******/
 		font-family: "Lato", sans-serif;
 		font-size: 16pt;
@@ -2218,13 +2218,13 @@
 	}
 
 		table tbody tr {
-			border: solid 2px #f4f4f4;
+			border: solid 2px #DEDEDE;
 			border-left: 0;
 			border-right: 0;
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: #fafafa;
+				background-color: #DEDEDE;
 			}
 
 		table td {
@@ -2286,6 +2286,7 @@
 					padding: 0;
 					text-align: center;
 					font-size: 0.7em;
+					border: solid 1px #878787;
 				}
 
 				table.alt2 th {
@@ -2294,6 +2295,7 @@
 					font-size: 0.9em;
 					font-weight: 700;
 					text-align: center;
+					border: solid 1px #878787;
 				}
 
 				table.alt2 tbody tr.nobgcolor {
@@ -2513,7 +2515,7 @@
 		-webkit-justify-content: space-between;
 		-ms-justify-content: space-between;
 		justify-content: space-between;
-		background: #61b2ed; /**** #4acaa8; ****** bg color for nav pane ***/
+		background: #315278; /**** #4acaa8; ****** bg color for nav pane ***/
 		color: red /*#d1f1e9*/;
 		height: 100%;
 		overflow-y: auto;
@@ -2533,7 +2535,7 @@
 			}
 
 		#header header p {
-			color: #b6e9dc;
+			color: #548BE9;
 		}
 
 		#header a {
@@ -2564,7 +2566,7 @@
 			}
 
 			#header > header p {
-				color: #84deff; /***** #d1f1e9; **** font color for main subtitle  ***/
+				color: #A3BDE9; /***** #d1f1e9; **** font color for main subtitle  ***/
 				font-style: italic;
 				margin: 1em 0 0 0;
 			}
@@ -2585,7 +2587,7 @@
 			}
 
 				#header > footer .icons li a {
-					color: #84deff; /*** #b6e9dc; */
+					color: #A3BDE9; /*** #b6e9dc; */
 				}
 
 		#header > nav {
@@ -2602,7 +2604,7 @@
 			}
 
 				#header > nav ul li {
-					border-top: solid 2px #39a9db; /*** #5ccfb0 *** divider between nav items */
+					border-top: solid 2px #A3BDE9; /*** #5ccfb0 *** divider between nav items */
 					display: block;
 					padding: 0;
 				}
@@ -2746,13 +2748,13 @@
 /* One */
 @media screen {
 	#one:before {
-		background-image: url("../../images/banner lego.jpg");
+		background-image: url("../images/RainClearing.jpg");
 		background-position: top right;
 		background-repeat: no-repeat;
 		background-size: cover;
 		content: '';
 		display: block;
-		height: 10em;
+		height: 13.5em;
 		width: 100%;
 	}
 }
