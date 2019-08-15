@@ -1,0 +1,260 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="../css/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>Software Evolution</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 9</p>
+
+
+
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p>There are many reasons why <b>software change is inevitable</b>:</p>
+<ul>
+    <li>New requirements emerge when the software is used;</li>
+    <li>The business environment changes;</li>
+    <li>Errors must be repaired;</li>
+    <li>New computers and equipment is added to the system;</li>
+    <li>The performance or reliability of the system may have to be improved.</li>
+</ul>
+<p>A key problem for all organizations is implementing and managing change to their existing software systems.</p>
+
+
+<p>Organizations have <b>huge investments in their software systems</b> - they are critical business assets.
+To maintain the value of these assets to the business, they must be changed and updated.
+The majority of the software budget in large companies is devoted to changing and evolving existing software rather than developing new software.
+A <b>spiral model</b> of development and evolution represents how a <b>software system evolves through a sequence of multiple releases</b>.</p>
+
+<p><img src="./09-SoftwareEvolution_files/09-software_evolution.png" width="60%"></p>
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Evolution processes</p></div>
+
+<p><b>Software evolution processes</b> depend on:</p>
+<ul>
+    <li>The <b>type of software</b> being maintained;</li>
+    <li>The <b>development processes</b> used;</li>
+    <li>The <b>skills and experience</b> of the people involved.</li>
+</ul>
+
+<p><b>Proposals for change</b> are the driver for system evolution. These should be linked with components that are affected by the change, thus allowing the cost and impact of the change to be estimated.
+Change identification and evolution continues throughout the system lifetime.</p>
+
+<p><img src="./09-SoftwareEvolution_files/09-evolution_process.png" width="100%"></p>
+
+<p><b>Change implementation</b> can be viewed as an iteration of the development process where the revisions to the system are designed, implemented and tested.
+A critical difference is that the first stage of change implementation may involve program understanding, especially if the original system developers are not responsible for  the change implementation.
+During the program understanding phase, you have to understand how the program is structured, how it delivers functionality and how the proposed change might affect the program. </p>
+
+<p><b>Agile methods</b> are based on incremental development so the transition from development to evolution is a seamless one.
+<b>Evolution</b> is simply a <b>continuation of the development process</b> based on frequent system releases.
+Automated regression testing is particularly valuable when changes are made to a system.
+Changes may be expressed as additional user stories.</p>
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Program evolution dynamics</p></div>
+
+<p>Program evolution dynamics is the <b>study of the processes of system change</b>.
+The <b>system requirements</b> are likely to change while the system is being developed because the environment is changing, therefore a delivered system won't meet its requirements.
+Systems are tightly coupled with their environment. When a system is installed in an environment it changes that environment and therefore changes the system requirements.
+Systems MUST be changed if they are to remain useful in an environment.</p>
+
+
+<p>After several major empirical studies, Lehman and Belady proposed that there were a number of <b>'laws'</b> which <b>apply to all systems as they evolved</b>.
+There are sensible observations rather than laws. They are applicable to large systems developed by large organizations. </p>
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Law</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>Continuing change</td>
+        <td>A program that is used in a real-world environment must necessarily change, or else become progressively less useful in that environment.</td>
+    </tr>
+    <tr>
+        <td>Increasing complexity</td>
+        <td>As an evolving program changes, its structure tends to become more complex. Extra resources must be devoted to preserving and simplifying the structure.</td>
+    </tr>
+    <tr>
+        <td>Large program evolution</td>
+        <td>Program evolution is a self-regulating process. System attributes such as size, time between releases, and the number of reported errors is approximately invariant for each system release.</td>
+    </tr>
+    <tr>
+        <td>Organizational stability</td>
+        <td>Over a program's lifetime, its rate of development is approximately constant and independent of the resources devoted to system development.</td>
+    </tr>
+    <tr>
+        <td>Conservation of familiarity</td>
+        <td>Over the lifetime of a system, the incremental change in each release is approximately constant.</td>
+    </tr>
+    <tr>
+        <td>Continuing growth</td>
+        <td>The functionality offered by systems has to continually increase to maintain user satisfaction.</td>
+    </tr>
+    <tr>
+        <td>Declining quality</td>
+        <td>The quality of systems will decline unless they are modified to reflect changes in their operational environment.</td>
+    </tr>
+    <tr>
+        <td>Feedback system</td>
+        <td>Evolution processes incorporate multi agent, multi loop feedback systems and you have to treat them as feedback systems to achieve significant product improvement.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Software maintenance</p></div>
+
+<p>Software maintenance focuses on <b>modifying a program after it has been put into use</b>.
+The term is mostly used for changing custom software. Generic software products are said to evolve to create new versions.
+Maintenance does not normally involve major changes to the system's architecture.
+Changes are implemented by modifying existing components and adding new components to the system.</p>
+
+<p><b>Types of software maintenance</b> include:</p>
+<ul>
+    <li>Maintenance to <b>repair software faults</b>: changing a system to correct deficiencies in the way meets its requirements.</li>
+    <li>Maintenance to <b>adapt software to a different operating environment</b>: changing a system so that it operates in a different environment (computer, OS, etc.) from its initial implementation.</li>
+    <li>Maintenance to <b>add to or modify the system's functionality</b>: modifying the system to satisfy new requirements.</li>
+</ul>
+
+
+<p><b>Maintenance costs</b> are usually greater than development costs (2x to 100x depending on the application). Costs are affected by both technical and non-technical factors; they tend to increase as software is maintained. Maintenance corrupts the software structure making further maintenance more difficult.
+Aging software can have high support costs  (e.g. old languages, compilers etc.).</p>
+
+<p>Maintenance cost factors include:</p>
+<ul>
+    <li><b>Team stability</b>: maintenance costs are reduced if the same staff are involved with them for some time.</li>
+    <li><b>Contractual responsibility</b>: the developers of a system may have no contractual responsibility for maintenance so there is no incentive to design for future change.</li>
+    <li><b>Staff skills</b>: maintenance staff are often inexperienced and have limited domain knowledge.</li>
+    <li><b>Program age and structure</b>: as programs age, their structure is degraded and they become harder to understand and change.</li>
+</ul>
+
+
+<p><b>Maintenance prediction</b> is concerned with assessing which parts of the system may cause problems and have high maintenance costs. Predicting the number of changes requires and understanding of the relationships between a system and its environment.
+Tightly coupled systems require changes whenever the environment is changed.
+Factors influencing this relationship are:</p>
+<ul>
+    <li>Number and complexity of <b>system interfaces</b>;</li>
+    <li>Number of inherently <b>volatile system requirements</b>;</li>
+    <li>The <b>business processes</b> where the system is used.</li>
+</ul>
+
+<p><b>Predictions of maintainability</b> can be made by <b>assessing the complexity</b> of system components.
+Studies have shown that most maintenance effort is spent on a relatively small number of system components.
+Complexity depends on:</p>
+<ul>
+    <li>Complexity of control structures;</li>
+    <li>Complexity of data structures;</li>
+    <li>Object, method (procedure) and module size.</li>
+</ul>
+
+<p><b>Process metrics</b> may be used to assess maintainability; if any or all of these is increasing, this may indicate a decline in maintainability:</p>
+<ul>
+    <li>Number of requests for corrective maintenance;</li>
+    <li>Average time required for impact analysis;</li>
+    <li>Average time taken to implement a change request;</li>
+    <li>Number of outstanding change requests.</li>
+</ul>
+
+
+<p><b>System reengineering</b> refers to restructuring or rewriting part or all of a legacy system <b>without changing its functionality</b>.
+It is applicable where some but not all sub-systems of a larger system require frequent maintenance.
+Reengineering involves adding effort to make them easier to maintain. The system may be restructured and re-documented. <b>Advantages</b> of reengineering include:</p>
+<ul>
+    <li><b>Reduced risk</b>: there is a high risk in new software development. There may be development problems, staffing problems and specification problems.</li>
+    <li><b>Reduced cost</b>: the cost of reengineering is often significantly less than the costs of developing new software.</li>
+</ul>
+
+<p>Reengineering process <b>activities</b> include:</p>
+<ul>
+    <li><b>Source code translation</b>: convert code to a new language;</li>
+    <li><b>Reverse engineering</b>: analyze the program to understand it;</li>
+    <li><b>Program structure improvement</b>: restructure automatically for understandability;</li>
+    <li><b>Program modularization</b>: reorganize the program structure;</li>
+    <li><b>Data reengineering</b>: clean-up and restructure system data.</li>
+</ul>
+
+<p><b>Refactoring</b> is the process of making improvements to a program to <b>slow down degradation through change</b>.
+You can think of refactoring as <b>'preventative maintenance'</b> that reduces the problems of future change.
+Refactoring involves modifying a program to improve its structure, reduce its complexity or make it easier to understand.
+When you refactor a program, you should not add functionality but rather concentrate on program improvement.
+Reengineering takes place after a system has been maintained for some time and maintenance costs are increasing. You use automated tools to process and reengineer a legacy system to create a new system that is more maintainable.
+Refactoring is a <b>continuous process of improvement</b> throughout the development and evolution process. It is intended to avoid the structure and code degradation that increases the costs and difficulties of maintaining a system. </p>
+
+<p><b>'Bad smells' of code</b> are stereotypical situations in which the code of a program can be improved through refactoring:</p>
+<ul>
+    <li><b>Duplicate code</b> or very similar code may be included at different places in a program; it can be removed and implemented as a single method or function that is called as required.</li>
+    <li><b>Long methods</b> should be redesigned as a number of shorter methods.</li>
+    <li><b>Switch (case) statements</b> often involve duplication, where the switch depends on the type of a value or the switch statements may be scattered around a program. In object-oriented languages, you can often use polymorphism to achieve the same thing.</li>
+    <li><b>Data clumping</b> occurs when the same group of data items (fields in classes, parameters in methods) re-occur in several places in a program. These can often be replaced with an object that encapsulates all of the data.</li>
+    <li><b>Speculative generality</b> occurs when developers include generality in a program in case it is required in the future. This can often simply be removed. </li>
+</ul>
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Legacy system management</p></div>
+
+<p>Organizations that rely on legacy systems must choose a strategy for evolving these systems. The chosen strategy  should depend on the system quality and its business value:</p>
+<ul>
+    <li><b>Low quality, low business value</b>:  should be scrapped. </li>
+    <li><b>Low-quality, high-business value</b>: make an important business contribution but are expensive to maintain. Should be re-engineered or replaced if a suitable system is available.</li>
+    <li><b>High-quality, low-business value</b>: replace with COTS, scrap completely, or maintain.</li>
+    <li><b>High-quality, high business value</b>: continue in operation using normal system maintenance.</li>
+</ul>
+
+<p><img src="./09-SoftwareEvolution_files/09-legacy_system_assessment.png" width="70%"></p>
+
+
+
+
+
+
+
+
+</div>
+
+
+</body></html>

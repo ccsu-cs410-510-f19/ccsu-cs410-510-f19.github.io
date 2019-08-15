@@ -1,0 +1,315 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="../css/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>Software Testing</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 8</p>
+
+
+
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p>Testing is intended to show that a <b>program does what it is intended to do</b> and to <b>discover program defects</b> before it is put into use.
+When you test software, you execute a program using artificial data.
+You check the results of the test run for errors, anomalies or information about the program's non-functional attributes.
+<b>Testing can reveal the presence of errors, but NOT their absence.</b>
+Testing is part of a more general verification and validation process, which also includes static validation techniques.</p>
+
+<p><b>Goals</b> of software testing:</p>
+<ul>
+    <li>To <b>demonstrate</b> to the developer and the customer that the <b>software meets its requirements</b>. </li>
+    <ul>
+        <li>Leads to <b>validation testing</b>:
+you expect the system to perform correctly using a given set of test cases that reflect the system's expected use. </li>
+        <li>A successful test shows that the system operates as intended.</li>
+    </ul>
+    <li>To <b>discover</b> situations in which the behavior of the software is <b>incorrect, undesirable or does not conform to its specification</b>.</li>
+    <ul>
+        <li>Leads to <b>defect testing</b>:
+the test cases are designed to expose defects; the test cases can be deliberately obscure and need not reflect how the system is normally used. </li>
+        <li>A successful test is a test that makes the system perform incorrectly and so exposes a defect in the system.</li>
+    </ul>
+</ul>
+
+<p>Testing can be viewed as an <b>input-output process</b>:</p>
+<p><img src="./08-SoftwareTesting_files/08-io_model_testing.png" width="60%"></p>
+
+
+
+
+
+<div class="Underhead">
+<p>Verification and validation</p></div>
+
+<p>Testing is part of a broader process of software <b>verification and validation</b> (V &amp; V).</p>
+<ul>
+    <li><b>Verification: Are we building the product right?</b><br>
+        The software should conform to its specification.</li>
+    <li><b>Validation: Are we building the right product?</b><br>
+        The software should do what the user really requires.</li>
+</ul>
+
+<p>The <b>goal of V &amp; V</b> is to establish confidence that the system is <b>good enough for its intended use</b>, which depends on:</p>
+<ul>
+    <li><b>Software purpose</b>: the level of confidence depends on how critical the software is to an organization.</li>
+    <li><b>User expectations</b>: users may have low expectations of certain kinds of software.</li>
+    <li><b>Marketing environment</b>: getting a product to market early may be more important than finding defects in the program.</li>
+</ul>
+
+
+
+
+<div class="Underhead">
+<p>Inspections and testing</p></div>
+
+<p><b>Software inspections</b> involve people examining the source representation with the aim of discovering anomalies and defects.
+Inspections not require execution of a system so may be used before implementation.
+They may be applied to any representation of the system (requirements, design,configuration data, test data, etc.).
+They have been shown to be an effective technique for discovering program errors. </p>
+
+<p><b>Advantages</b> of inspections include:</p>
+<ul>
+    <li>During testing, errors can mask (hide) other errors. Because inspection is a static process, you don't have to be concerned with <b>interactions between errors</b>.</li>
+    <li><b>Incomplete versions</b> of a system can be inspected without additional costs. If a program is incomplete, then you need to develop specialized test harnesses to test the parts that are available. </li>
+    <li>As well as searching for program defects, an inspection can also consider <b>broader quality attributes</b> of a program, such as compliance with standards, portability and maintainability. </li>
+</ul>
+
+<p><b>Inspections and testing are complementary</b> and not opposing verification techniques.
+Both should be used during the V &amp; V process.
+Inspections can check conformance with a specification but not conformance with the customer's real requirements.
+Inspections cannot check non-functional characteristics such as performance, usability, etc.</p>
+
+
+
+<p>Typically, a commercial software system has to go through <b>three stages of testing</b>:</p>
+<ul>
+    <li><b>Development testing</b>: the system is tested during development to discover bugs and defects. </li>
+    <li><b>Release testing</b>: a separate testing team test a complete version of the system before it is released to users. </li>
+    <li><b>User testing</b>: users or potential users of a system test the system in their own environment.</li>
+</ul>
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Development testing</p></div>
+
+<p>Development testing includes all testing activities that are carried out by the team developing the system:</p>
+<ul>
+    <li><b>Unit testing</b>: individual program units or object classes are tested; should focus on testing the functionality of objects or methods.</li>
+    <li><b>Component testing</b>: several individual units are integrated to create composite components; should focus on testing component interfaces.</li>
+    <li><b>System testing</b>: some or all of the components in a system are integrated and the system is tested as a whole; should focus on testing component interactions.</li>
+</ul>
+
+
+
+<div class="Underhead">
+<p>Unit testing</p></div>
+
+<p>Unit testing is the process of <b>testing individual components in isolation</b>.
+It is a defect testing process.
+Units may be:</p>
+<ul>
+    <li><b>Individual functions</b> or methods within an object; </li>
+    <li><b>Object classes</b> with several attributes and methods; </li>
+    <li><b>Composite components</b> with defined interfaces used to access their functionality.</li>
+</ul>
+
+<p>When <b>testing object classes</b>, tests should be designed to provide coverage of all of the features of the object:</p>
+<ul>
+    <li>Test <b>all operations</b> associated with the object;</li>
+    <li>Set and check the <b>value of all attributes</b> associated with the object;</li>
+    <li>Put the object into <b>all possible states</b>, i.e. simulate all events that cause a state change.</li>
+</ul>
+
+<p>Whenever possible, <b>unit testing should be automated</b> so that tests are run and checked without manual intervention.
+In automated unit testing, you make use of a test automation framework (such as JUnit) to write and run your program tests.
+Unit testing frameworks provide generic test classes that you extend to create specific test cases. They can then run all of the tests that you have implemented and report, often through some GUI, on the success of otherwise of the tests. An automated test has three parts:</p>
+<ul>
+    <li>A <b>setup</b> part, where you initialize the system with the test case, namely the inputs and expected outputs.</li>
+    <li>A <b>call</b> part, where you call the object or method to be tested.</li>
+    <li>An <b>assertion</b> part where you compare the result of the call with the expected result. If the assertion evaluates to true, the test has been successful  if false, then it has failed.</li>
+</ul>
+
+<p>The test cases should show that, when used as expected, the component that you are testing does what it is supposed to do.
+If there are defects in the component, these should be revealed by test cases.
+This leads to <b>two types of unit test cases</b>:</p>
+<ul>
+    <li>The first of these should reflect <b>normal operation</b> of a program and should show that the component works as expected. </li>
+    <li>The other kind of test case should be based on testing experience of where common problems arise. It should use <b>abnormal inputs</b> to check that these are properly processed and do not crash the component. </li>
+</ul>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Component testing</p></div>
+
+<p><b>Software components</b> are often composite components that are <b>made up of several interacting objects</b>.
+You access the functionality of these objects through the <b>defined component interface</b>.
+Testing composite components should therefore focus on showing that the component interface behaves according to its specification. Objectives are to detect faults due to interface errors or invalid assumptions about interfaces. Interface types include:</p>
+<ul>
+    <li><b>Parameter interfaces</b>: data passed from one method or procedure to another.</li>
+    <li><b>Shared memory interfaces</b>: block of memory is shared between procedures or functions.</li>
+    <li><b>Procedural interfaces</b>: sub-system encapsulates a set of procedures to be called by other sub-systems.</li>
+    <li><b>Message passing interfaces</b>: sub-systems request services from other sub-systems.</li>
+</ul>
+
+<p>Interface errors:</p>
+<ul>
+    <li><b>Interface misuse</b>: a calling component calls another component and makes an error in its use of its interface e.g. parameters in the wrong order.</li>
+    <li><b>Interface misunderstanding</b>: a calling component embeds assumptions about the behavior of the called component which are incorrect.</li>
+    <li><b>Timing errors</b>: the called and the calling component operate at different speeds and out-of-date information is accessed.</li>
+</ul>
+
+<p>General guidelines for interface testing:</p>
+<ul>
+    <li>Design tests so that parameters to a called procedure are at the extreme ends of their ranges.</li>
+    <li>Always test pointer parameters with null pointers.</li>
+    <li>Design tests which cause the component to fail.</li>
+    <li>Use stress testing in message passing systems.</li>
+    <li>In shared memory systems, vary the order in which components are activated.</li>
+</ul>
+
+
+
+
+
+
+<div class="Underhead">
+<p>System testing</p></div>
+
+<p>System testing during development involves <b>integrating components</b> to create a version of the system and then <b>testing the integrated system</b>.
+The focus in system testing is <b>testing the interactions between components</b>.
+System testing checks that components are compatible, interact correctly and transfer the right data at the right time across their interfaces.
+System testing tests the <b>emergent behavior</b> of a system. </p>
+
+<p>During system testing, reusable components that have been separately developed and off-the-shelf systems may be integrated with newly developed components. The complete system is then tested.
+Components developed by different team members or sub-teams may be integrated at this stage. System testing is a collective rather than an individual process. </p>
+
+<p>The <b>use cases</b> developed to identify system interactions can be used as a <b>basis for system testing</b>.
+Each use case usually involves several system components so testing the use case forces these interactions to occur.
+The <b>sequence diagrams</b> associated with the use case <b>document the components and their interactions</b> that are being tested.</p>
+
+
+
+
+<div class="Underhead">
+<p>Test-driven development</p></div>
+
+
+<p>Test-driven development (TDD) is an approach to program development in which you <b>inter-leave testing and code development</b>.
+<b>Tests are written before code</b> and 'passing' the tests is the critical driver of development.
+This is a differentiating feature of TDD versus writing unit tests after the code is written: it makes the developer focus on the requirements before writing the code.
+<b>The code is developed incrementally, along with a test for that increment</b>. You don't move on to the next increment until the code that you have developed passes its test.
+TDD was introduced as part of agile methods such as Extreme Programming. However, it can also be used in plan-driven development processes. </p>
+
+<p>TDD example - <a href="http://osherove.com/tdd-kata-1/">a string calculator</a>.</p>
+
+<p>The <b>goal of TDD</b> isn't to ensure we write tests by writing them first, but to <b>produce working software that achieves a targeted set of requirements using simple, maintainable solutions</b>.  To achieve this goal, TDD provides strategies for <b>keeping code working, simple, relevant, and free of duplication</b>.</p>
+
+
+<p><img src="./08-SoftwareTesting_files/08-test_driven_development.png" width="80%"></p>
+
+
+<p>TDD process includes the following activities:</p>
+<ol>
+    <li>Start by <b>identifying the increment of functionality</b> that is required. This should normally be small and implementable in a few lines of code.</li>
+    <li><b>Write a test</b> for this functionality and implement this as an automated test. </li>
+    <li><b>Run the test</b>, along with all other tests that have been implemented. Initially, you have not implemented the functionality so the new test will fail. </li>
+    <li><b>Implement the functionality and re-run the test</b>. </li>
+    <li>Once all tests run successfully, you move on to implementing the next chunk of functionality.</li>
+</ol>
+
+
+
+
+<p>Benefits of test-driven development:</p>
+<ul>
+    <li><b>Code coverage</b>: every code segment that you write has at least one associated test so all code written has at least one test.</li>
+    <li><b>Regression testing</b>: a regression test suite is developed incrementally as a program is developed. </li>
+    <li><b>Simplified debugging</b>: when a test fails, it should be obvious where the problem lies; the newly written code needs to be checked and modified. </li>
+    <li><b>System documentation</b>: the tests themselves are a form of documentation that describe what the code should be doing. </li>
+</ul>
+
+<p><b>Regression testing</b> is testing the system to check that <b>changes have not 'broken' previously working code</b>.
+In a manual testing process, regression testing is expensive but, with automated testing, it is simple and straightforward. All tests are rerun every time a change is made to the program.
+Tests must run 'successfully' before the change is committed.</p>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Release testing</p></div>
+
+<p>Release testing is the process of <b>testing a particular release</b> of a system that is <b>intended for use outside of the development team</b>.
+The primary goal of the release testing process is to <b>convince the customer of the system that it is good enough for use</b>.
+Release testing, therefore, has to show that the system delivers its specified functionality, performance and dependability, and that it does not fail during normal use.
+Release testing is usually a black-box testing process where <b>tests are only derived from the system specification</b>. </p>
+
+
+<p>Release testing is a form of system testing. Important differences:</p>
+<ul>
+    <li>A separate team that has not been involved in the system development, should be responsible for release testing.</li>
+    <li>System testing by the development team should focus on discovering bugs in the system (defect testing). The objective of release testing is to check that the system meets its requirements and is good enough for external use (validation testing).</li>
+</ul>
+
+<p><b>Requirements-based testing</b> involves examining each requirement and developing a test or tests for it. It is validation rather than defect testing: you are trying to demonstrate that the system has properly implemented its requirements.</p>
+
+<p><b>Scenario testing</b> is an approach to release testing where you devise typical scenarios of use and use these to develop test cases for the system. Scenarios should be realistic and real system users should be able to relate to them. If you have used scenarios as part of the requirements engineering process, then you may be able to reuse these as testing scenarios.</p>
+
+<p>Part of release testing may involve testing the <b>emergent properties</b> of a system, such as performance and reliability.
+Tests should reflect the profile of use of the system.
+Performance tests usually involve planning a series of tests where the load is steadily increased until the system performance becomes unacceptable.
+Stress testing is a form of performance testing where the system is deliberately overloaded to test its failure behavior.</p>
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>User testing</p></div>
+
+<p>User or customer testing is a stage in the testing process in which <b>users or customers provide input and advice on system testing</b>.
+User testing is essential, even when comprehensive system and release testing have been carried out. Types of user testing include:</p>
+<ul>
+    <li><b>Alpha testing</b>: users of the software work with the development team to test the software at the developer's site.</li>
+    <li><b>Beta testing</b>: a release of the software is made available to users to allow them to experiment and to raise problems that they discover with the system developers.</li>
+    <li><b>Acceptance testing</b>: customers test a system to decide whether or not it is ready to be accepted from the system developers and deployed in the customer environment. </li>
+</ul>
+
+<p>In agile methods, the user/customer is part of the development team and is responsible for making decisions on the acceptability of the system.
+Tests are defined by the user/customer and are integrated with other tests in that they are run automatically when changes are made.
+Main problem here is whether or not the embedded user is 'typical' and can represent the interests of all system stakeholders.</p>
+
+
+
+
+</div>
+
+
+</body></html>
