@@ -1,0 +1,207 @@
+
+<!-- saved from url=(0077)https://cs.ccsu.edu/~stan/classes/CS410/Notes16/14-ResilienceEngineering.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="./14-ResilienceEngineering_files/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>Resilience Engineering 
+</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 14</p>
+
+
+
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p>The resilience of a system is a <b>judgment</b> of how well that system can maintain the <b>continuity</b> of its critical services in the presence of disruptive events, such as equipment failure and cyberattacks. This view encompasses these three ideas:</p>
+<ul>
+	<li>Some of the services offered by a system are <b>critical services</b> whose failure could have serious human, social or economic effects.</li>
+	<li><b>Some events are disruptive</b> and can affect the ability of a system to deliver its critical services. </li>
+	<li>Resilience is a judgment - there are no resilience metrics and <b>resilience cannot be measured</b>. The resilience of a system can only be assessed by experts, who can examine the system and its operational processes. </li>
+</ul>
+
+<p><b>Resilience engineering</b> places more emphasis on <b>limiting the number of system failures</b> that arise from external events such as operator errors or cyberattacks. Assumptions:</p>
+<ul>
+	<li>It is <b>impossible to avoid system failures</b> and so is concerned with <b>limiting the costs</b> of these failures and <b>recovering</b> from them.</li>
+	<li><b>Good reliability engineering practices</b> have been used to minimize the number of technical faults in a system. </li>
+</ul>
+
+<p>Four related <b>resilience activities</b> are involved in the detection and recovery from system problems:</p>
+<ul>
+	<li>The system or its operators should <b>recognize</b> early indications of system failure. </li>
+	<li>If the symptoms of a problem or cyberattack are detected early, then <b>resistance</b> strategies may be used to reduce the probability that the system will fail. </li>
+	<li>If a failure occurs, the <b>recovery</b> activity ensures that critical system services are restored quickly so that system users are not badly affected by failure. </li>
+	<li>In this final activity, all of the system services are <b>restored</b> and normal system operation can continue. </li>
+</ul>
+
+<p><img src="./14-ResilienceEngineering_files/14-resilience_activities.png" width="80%"></p>
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Cybersecurity</p></div>
+
+<p><b>Cybercrime</b> is the illegal use of networked systems and is one of the most serious problems facing our society.
+Cybersecurity is a broader topic than system security engineering.
+<b>Cybersecurity is a socio-technical issue</b> covering all aspects of ensuring the protection of citizens, businesses, and critical infrastructures from threats that arise from their use of computers and the Internet.
+Cybersecurity is concerned with all of an organization's IT assets from networks through to application systems.  </p>
+
+<p>Factors contributing to <b>cybersecurity failure</b>:</p>
+<ul>
+	<li><b>Organizational ignorance</b> of the seriousness of the problem, </li>
+	<li>Poor design and lax application of <b>security procedures</b>, </li>
+	<li><b>Human carelessness</b>,</li>
+	<li>Inappropriate <b>trade-offs between usability and security</b>.</li>
+</ul>
+
+<p><b>Cybersecurity threats</b>:</p>
+<ul>
+	<li>Threats to the <b>confidentiality</b> of assets: data is not damaged but it is made available to people who should not have access to it. </li>
+	<li>Threats to the <b>integrity</b> of assets: systems or data are damaged in some way by a cyberattack. </li>
+	<li>Threats to the <b>availability</b> of assets: aim to deny the  use of assets by authorized users. </li>
+</ul>
+
+<p>Examples of <b>controls</b> to protect the assets:</p>
+<ul>
+	<li><b>Authentication</b>, where users of a system have to show that they are authorized to access the system.</li>
+	<li><b>Encryption</b>, where data is algorithmically scrambled so that an unauthorized reader cannot access the information. </li>
+	<li><b>Firewalls</b>, where incoming network packets are examined then accepted or rejected according to a set of organizational rules. </li>
+</ul>
+
+
+<p><b>Redundancy and diversity</b> are valuable for cybersecurity resilience:</p>
+<ul>
+	<li>Copies of data and software should be maintained on separate computer systems (supports recovery and reinstatement).</li>
+	<li>Multi-stage diverse authentication can protect against password attacks (supports resistance).</li>
+	<li>Critical servers may be over-provisioned i.e. they may be more powerful than is required to handle their expected load (supports resistance).</li>
+</ul>
+
+<p><b>Cyber resilience planning:</b></p>
+<ul>
+	<li><b>Asset classification:</b> the organization's hardware, software and human assets are examined and classified depending on how essential they are to normal operations. </li>
+	<li><b>Threat identification:</b> for each of the assets (or, at least the critical and important assets), you should identify and classify threats to that asset. </li>
+	<li><b>Threat recognition:</b> for each threat or, sometimes asset/threat pair, you should identify how an attack based on that threat might be recognized. </li>
+	<li><b>Threat resistance:</b> for each threat or asset/threat pair, you should identify possible resistance strategies. These may be either embedded in the system (technical strategies) or may rely on operational procedures. </li>
+	<li><b>Asset recovery:</b> for each critical asset or asset/threat pair, you should work out how that asset could be recovered in the event of a successful cyberattack. </li>
+	<li><b>Asset reinstatement:</b> this is a more general process of asset recovery where you define procedures to bring the system back into normal operation. </li>
+</ul>
+
+<p><img src="./14-ResilienceEngineering_files/14-cyber_resilience_planning.png" width="90%"></p>
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Socio-technical resilience</p></div>
+	
+<p>Resilience engineering is concerned with adverse external events that can lead to system failure. 
+To design a resilient system, you have to think about socio-technical systems design and not exclusively focus on software. 
+Dealing with these events is often easier and more effective in the broader socio-technical system. </p>
+
+<p>Four characteristics that reflect the <b>resilience of an organization</b>:</p>
+<dl>
+	<dt>The ability to respond</dt>
+	<dd>Organizations have to be able to adapt their processes and procedures in response to risks. These risks may be anticipated risks or may be detected threats to the organization and its systems. </dd>
+
+	<dt>The ability to monitor </dt>
+	<dd>Organizations should monitor both their internal operations and their external environment for threats before they arise. </dd>
+	
+	<dt>The ability to anticipate </dt>
+	<dd>A resilient organization should not simply focus on its current operations but should anticipate possible future events and changes that may affect its operations and resilience. </dd>
+
+	<dt>The ability to learn  </dt>
+	<dd>Organizational resilience can be improved by learning from experience. It is particularly important to learn from successful responses to adverse events such as the effective resistance of a cyberattack. Learning from success allows. </dd>
+</dl>
+
+
+
+<p>People inevitably make mistakes (<b>human errors</b>) that sometimes lead to serious system failures. There are two ways to consider human error:</p>
+<ul>
+	<li><b>The person approach.</b> Errors are considered to be the responsibility of the individual and 'unsafe acts' (such as an operator failing to engage a safety barrier) are a consequence of individual carelessness or reckless behavior. </li>
+	<li><b>The systems approach.</b> The basic assumption is that people are fallible and will make mistakes. People make mistakes because they are under pressure from high workloads, poor training or because of inappropriate system design.  </li>
+</ul>
+
+
+<p>Systems engineers should assume that <b>human errors will occur</b> during system operation. 
+To improve the resilience of a system, designers have to think about the <b>defense and barriers to human error</b> that could be part of a system. 
+Can these barriers should be built into the technical components of the system (<b>technical barriers</b>)? If not, they could be part of the processes, procedures and guidelines for using the system (<b>socio-technical barriers</b>). </p>
+
+<p><img src="./14-ResilienceEngineering_files/14-swiss_cheese_model.png" width="60%"></p>
+
+<p><b>Defensive layers have vulnerabilities</b>: they are like slices of Swiss cheese with holes in the layer corresponding to these vulnerabilities.
+Vulnerabilities are dynamic: the 'holes' are not always in the same place and the size of the holes may vary depending on the operating conditions.
+System failures occur when the holes line up and all of the defenses fail.</p>
+
+<p><b>Strategies to increase system resilience:</b></p>
+<ul>
+	<li><b>Reduce the probability of the occurrence</b> of an external event that might trigger system failures. </li>
+	<li><b>Increase the number of defensive layers.</b> The more layers that you have in a system, the less likely it is that the holes will line up and a system failure occur. </li>
+	<li>Design a system so that <b>diverse types of barriers</b> are included. The 'holes' will probably be in different places and so there is less chance of the holes lining up and failing to trap an error. </li>
+	<li><b>Minimize the number of latent conditions in a system.</b> This means reducing the number and size of system 'holes'.</li>
+</ul>
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Resilient systems design</p></div>
+
+<p><b>Designing systems for resilience</b> involves two streams of work:</p>
+<ul>
+	<li><b>Identifying critical services and assets</b> that allow a system to fulfill its primary purpose. </li>
+	<li><b>Designing system components</b> that support problem recognition, resistance, recovery and reinstatement.</li>
+</ul>
+
+<p>Survivable systems analysis</p>
+<ul>
+	<li><b>System understanding:</b> for an existing or proposed system, review the goals of the system (sometimes called the mission objectives), the system requirements and the system architecture. </li>
+	<li><b>Critical service identification:</b> the services that must always be maintained and the components that are required to maintain these services are identified.</li>
+	<li><b>Attack simulation:</b> scenarios or use cases for possible attacks are identified along with the system components that would be affected by these attacks. </li>
+	<li><b>Survivability analysis:</b> components that are both essential and compromisable by an attack are identified and survivability strategies based on resistance, recognition and recovery are identified. </li>
+</ul>
+	
+
+
+
+
+
+
+
+</div>
+
+
+</body></html>

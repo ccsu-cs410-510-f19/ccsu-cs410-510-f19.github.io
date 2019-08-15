@@ -1,0 +1,373 @@
+
+<!-- saved from url=(0075)https://cs.ccsu.edu/~stan/classes/CS410/Notes16/13-SecurityEngineering.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="./13-SecurityEngineering_files/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>Security Engineering 
+</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 13</p>
+
+
+
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p>Security engineering is a sub-field of the broader field of computer security. It encompasses <b>tools, techniques and methods</b> to support the development and maintenance of systems that can <b>resist malicious attacks</b> that are intended to damage a computer-based system or its data.</p>
+
+<p><b>Dimensions of security:</b></p>
+<ul>
+	<li><b>Confidentiality</b> Information in a system may be disclosed or made accessible to people or programs that are not authorized to have access to that information.  </li>
+	<li><b>Integrity</b> Information in a system may be damaged or corrupted making it unusual or unreliable. </li>
+	<li><b>Availability</b> Access to a system or its data that is normally available may not be possible.  </li>
+</ul>
+
+<p><b>Three levels of security:</b></p>
+<ul>
+	<li><b>Infrastructure security</b> is concerned with maintaining the security of all systems and networks that provide an infrastructure and a set of shared services to the organization. </li>
+	<li><b>Application security</b> is concerned with the security of individual application systems or related groups of systems.</li>
+	<li><b>Operational security</b> is concerned with the secure operation and use of the organization's systems.</li>
+</ul>
+
+<p><img src="./13-SecurityEngineering_files/13-system_layers.png" width="50%" style="float:right; margin-left:5px; margin-bottom:5px;"></p>
+
+<p><b>Application security</b> is a software engineering problem where the system is designed to resist attacks.
+<b>Infrastructure security</b> is a systems management problem where the infrastructure is configured to resist attacks.</p>
+
+
+<p><b>System security management</b> involves <b>user and permission management</b> (adding and removing users from the system and setting up appropriate permissions for users),
+<b>software deployment and maintenance</b> (installing application software and middleware and configuring these systems so that vulnerabilities are avoided),
+<b>attack monitoring, detection and recovery</b> (monitoring the system for unauthorized access, design strategies for resisting attacks and develop backup and recovery strategies).</p>
+
+<p><b>Operational security</b> is primarily a human and social issue, which is concerned with ensuring the people do not take actions that may compromise system security.
+Users sometimes take insecure actions to make it easier for them to do their jobs.
+There is therefore a trade-off between system security and system effectiveness.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Security and dependability</p></div>
+
+
+<p>The <b>security</b> of a system is a <b>property that reflects the system's ability to protect itself from accidental or deliberate external attack</b>.
+Security is essential as most systems are networked so that external access to the system through the Internet is possible.
+Security is an essential pre-requisite for availability, reliability and safety.</p>
+
+
+
+<p><b>Reliability terminology</b></p>
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Term</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>Asset</td>
+		<td>Something of value which has to be protected. The asset may be the software system itself or data used by that system.</td>
+    </tr>
+    <tr>
+		<td>Attack</td>
+		<td>An exploitation of a system's vulnerability. Generally, this is from outside the system and is a deliberate attempt to cause some damage.</td>
+    </tr>
+    <tr>
+	    <td>Control</td>
+		<td>A protective measure that reduces a system's vulnerability. Encryption is an example of a control that reduces a vulnerability of a weak access control system.</td>
+    </tr>
+    <tr>
+		<td>Exposure</td>
+		<td>Possible loss or harm to a computing system. This can be loss or damage to data, or can be a loss of time and effort if recovery is necessary after a security breach.</td>
+    </tr>
+    <tr>
+		<td>Threat</td>
+		<td>Circumstances that have potential to cause loss or harm. You can think of these as a system vulnerability that is subjected to an attack.</td>
+    </tr>
+    <tr>
+		<td>Vulnerability</td>
+		<td>A weakness in a computer-based system that may be exploited to cause loss or harm.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+<p><b>Four types of security threats:</b></p>
+<ul>
+	<li><b>Interception</b> threats that allow an attacker to gain access to an asset. </li>
+	<li><b>Interruption</b> threats that allow an attacker to make part of the system unavailable. </li>
+	<li><b>Modification</b> threats that allow an attacker to tamper with a system asset. </li>
+	<li><b>Fabrication</b> threats that allow an attacker to insert false information into a system. </li>
+</ul>
+
+<p><b>Security assurance strategies:</b></p>
+<dl>
+	<dt>Vulnerability avoidance</dt>
+	<dd>The system is designed so that vulnerabilities do not occur. For example, if there is no external network connection then external attack is impossible.</dd>
+	
+	<dt>Attack detection and elimination</dt>
+	<dd>The system is designed so that attacks on vulnerabilities are detected and neutralised before they result in an exposure. For example, virus checkers find and remove viruses before they infect a system.</dd>
+	
+	<dt>Exposure limitation and recovery</dt>
+	<dd>The system is designed so that the adverse consequences of a successful attack are minimised. For example, a backup policy allows damaged information to be restored.</dd>
+</dl>
+
+<p><b>Security and attributes of dependability:</b></p>
+<dl>
+	<dt>Security and reliability </dt>
+	<dd>If a system is attacked and the system or its data are corrupted as a consequence of that attack, then this may induce system failures that compromise the reliability of the system. </dd>
+
+	<dt>Security and availability </dt>
+	<dd>A common attack on a web-based system is a denial of service attack, where a web server is flooded with service requests from a range of different sources. The aim of this attack is to make the system unavailable. </dd>
+	
+	<dt>Security and safety </dt>
+	<dd>An attack that corrupts the system or its data means that assumptions about safety may not hold. Safety checks rely on analyzing the source code of safety critical software and assume the executing code is a completely accurate translation of that source code. If this is not the case, safety-related failures may be induced and the safety case made for the software is invalid. </dd>
+
+	<dt>Security and resilience  </dt>
+	<dd>Resilience is a system characteristic that reflects its ability to resist and recover from damaging events. The most probable damaging event on networked software systems is a cyberattack of some kind so most of the work now done in resilience is aimed at deterring, detecting and recovering from such attacks.</dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Security and organizations</p></div>
+
+<p><b>Security is expensive</b> and it is important that security decisions are made in a cost-effective way.
+There is no point in spending more than the value of an asset to keep that asset secure.
+Organizations use a <b>risk-based approach</b> to support security decision making and should have a defined security policy based on security risk analysis.
+Security risk analysis is a business rather than a technical process.</p>
+
+<p><b>Security policies</b> should set out general <b>information access strategies</b> that should apply across the organization. 
+The point of security policies is to inform everyone in an organization about security so these should not be long and detailed technical documents. 
+From a security engineering perspective, the security policy defines, in broad terms, the security goals of the organization. 
+The security engineering process is concerned with implementing these goals. </p>
+
+<p><b>Security policies principles:</b></p>
+<dl>
+	<dt>The assets that must be protected </dt>
+	<dd>It is not cost-effective to apply stringent security procedures to all organizational assets. Many assets are not confidential and can be made freely available. </dd>
+	
+	<dt>The level of protection that is required for different types of asset </dt>
+	<dd>For sensitive personal information, a high level of security is required; for other information, the consequences of loss may be minor so a lower level of security is adequate. </dd>
+	
+	<dt>The responsibilities of individual users, managers and the organization </dt>
+	<dd>The security policy should set out what is expected of users e.g. strong passwords, log out of computers, office security, etc.</dd>
+	
+	<dt>Existing security procedures and technologies that should be maintained </dt>
+	<dd>For reasons of practicality and cost, it may be essential to continue to use existing approaches to security even where these have known limitations.  </dd>
+</dl>
+
+
+<p><b>Risk assessment and management</b> is concerned with assessing the <b>possible losses</b> that might ensue from attacks on the system and balancing these losses against the <b>costs of security procedures</b> that may reduce these losses.
+Risk management should be driven by an organizational security policy.
+Risk management involves:</p>
+
+<dl>
+	<dt>Preliminary risk assessment</dt>
+	<dd>The aim of this initial risk assessment is to identify generic risks that are applicable to the system and to decide if an adequate level of security can be achieved at a reasonable cost. 
+The risk assessment should focus on the identification and analysis of high-level risks to the system. 
+The outcomes of the risk assessment process are used to help identify security requirements.</dd>
+
+	<dt>Design risk assessment</dt>
+	<dd>This risk assessment takes place during the system development life cycle and is informed by the technical system design and implementation decisions. 
+The results of the assessment may lead to changes to the security requirements and the addition of new requirements. 
+Known and potential vulnerabilities are identified, and this knowledge is used to inform decision making about the system functionality and how it is to be implemented, tested, and deployed. </dd>
+
+	<dt>Operational risk assessment</dt>
+	<dd>This risk assessment process focuses on the use of the system and the possible risks that can arise from human behavior. 
+Operational risk assessment should continue after a system has been installed to take account of how the system is used. 
+Organizational changes may mean that the system is used in different ways from those originally planned. These changes lead to new security requirements that have to be implemented as the system evolves. </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Security requirements</p></div>
+
+
+<p>Security specification has <b>something in common with safety requirements specification</b> - in both cases, your concern is to avoid something bad happening.
+Four major differences:</p>
+<ul>
+	<li><b>Safety problems are accidental</b> - the software is not operating in a hostile environment. In security, you must assume that <b>attackers have knowledge of system weaknesses</b>.</li>
+	<li>When safety failures occur, you can look for the <b>root cause or weakness</b> that led to the failure. When failure results from a deliberate attack, the attacker may <b>conceal the cause</b> of the failure.</li>
+	<li><b>Shutting down</b> a system can <b>avoid a safety-related failure</b>. Causing a shut down may be the <b>aim of an attack</b>.</li>
+	<li>Safety-related events are <b>not generated from an intelligent adversary</b>. An attacker can <b>probe defenses</b> over time to discover weaknesses.</li>
+</ul>
+
+<p><b>Security requirement classification</b></p>
+<ul>
+	<li><b>Risk avoidance</b> requirements set out the risks that should be avoided by designing the system so that these risks simply cannot arise.</li>
+	<li><b>Risk detection</b> requirements define mechanisms that identify the risk if it arises and neutralize the risk before losses occur.</li>
+	<li><b>Risk mitigation</b> requirements set out how the system should be designed so that it can recover from and restore system assets after some loss has occurred.  </li>
+</ul>
+
+
+<p><img src="./13-SecurityEngineering_files/13-risk_assessment.png" width="60%" style="float:right;"></p>
+<p><b>Security risk assessment</b></p>
+<ul>
+	<li><b>Asset identification</b>: identify the key system assets (or services) that have to be protected.</li>
+	<li><b>Asset value assessment</b>: estimate the value of the identified assets.</li>
+	<li><b>Exposure assessment</b>: assess the potential losses associated with each asset.</li>
+	<li><b>Threat identification</b>: identify the most probable threats to the system assets.</li>
+	<li><b>Attack assessment</b>: decompose threats into possible attacks on the system and the ways that these may occur.</li>
+	<li><b>Control identification</b>: propose the controls that may be put in place to protect an asset.</li>
+	<li><b>Feasibility assessment</b>: assess the technical feasibility and cost of the controls.</li>
+	<li><b>Security requirements definition</b>: define system security requirements. These can be infrastructure or application system requirements.</li>
+</ul>
+
+
+
+<p><b>Misuse cases</b> are instances of threats to a system:</p>
+<ul>
+	<li><b>Interception threats</b>: attacker gains access to an asset.</li>
+	<li><b>Interruption threats</b>: attacker makes part of a system unavailable.</li>
+	<li><b>Modification threats</b>: a system asset if tampered with.</li>
+	<li><b>Fabrication threats</b>: false information is added to a system.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Secure systems design</p></div>
+
+<p><b>Security should be designed into a system</b> - it is very difficult to make an insecure system secure after it has been designed or implemented.</p>
+
+<p><b>Adding security features</b> to a system to enhance its security <b>affects other attributes</b> of the system:</p>
+<ul>
+	<li><b>Performance:</b> additional security checks slow down a system so its response time or throughput may be affected.</li>
+	<li><b>Usability:</b> security measures may require users to remember information or require additional interactions to complete a transaction. This makes the system less usable and can frustrate system users.</li>
+</ul>
+
+
+<p><img src="./13-SecurityEngineering_files/13-interleaved_design_and_risk_assessment.png" width="60%" style="float:right;"></p>
+
+<p><b>Design risk assessment</b> is done while the system is being developed and after it has been deployed.
+More information is available - system platform, middleware and the system architecture and data organization.
+Vulnerabilities that arise from design choices may therefore be identified.</p>
+
+
+<p>During <b>architectural design</b>, two fundamental issues have to be considered when designing an architecture for security:</p>
+<dl>
+	<dt>Protection: how should the system be organized so that critical assets can be protected against external attack?</dt>
+	<dd>Layered protection architecture:<br>
+	<b>Platform-level protection</b>: top-level controls on the platform on which a system runs.<br>
+	<b>Application-level protection</b>: specific protection mechanisms built into the application itself e.g. additional password protection.<br>
+	<b>Record-level protection</b>: protection that is invoked when access to specific information is requested.
+	</dd>
+
+	
+	
+	<dt>Distribution: how should system assets be distributed so that the effects of a successful attack are minimized?</dt>
+	<dd>Distributing assets means that attacks on one system do not necessarily lead to complete loss of system service.
+Each platform has separate protection features and may be different from other platforms so that they do not share a common vulnerability.
+Distribution is particularly important if the risk of denial of service attacks is high.
+	</dd>
+</dl>
+
+<p>These are potentially conflicting.
+If assets are distributed, then they are more expensive to protect. If assets are protected, then usability and performance requirements may be compromised.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Design guidelines for security engineering</p></div>
+
+<p>Design guidelines encapsulate good practice in secure systems design.
+Design guidelines serve two purposes: they <b>raise awareness</b> of security issues in a software engineering team, and they can be used as the <b>basis of a review checklist</b> that is applied during the system validation process. 
+Design guidelines here are applicable during software specification and design.</p>
+
+<dl>
+	<dt>Base decisions on an explicit security policy</dt>
+	<dd>Define a security policy for the organization that sets out the fundamental security requirements that should apply to all organizational systems.</dd>
+
+	<dt>Avoid a single point of failure</dt>
+	<dd>Ensure that a security failure can only result when there is more than one failure in security procedures. For example, have password and question-based authentication.</dd>
+
+	<dt>Fail securely</dt>
+	<dd>When systems fail, for whatever reason, ensure that sensitive information cannot be accessed by unauthorized users even although normal security procedures are unavailable.</dd>
+	
+	<dt>Balance security and usability</dt>
+	<dd>Try to avoid security procedures that make the system difficult to use. Sometimes you have to accept weaker security to make the system more usable.</dd>
+
+	<dt>Log user actions</dt>
+	<dd>Maintain a log of user actions that can be analyzed to discover who did what. If users know about such a log, they are less likely to behave in an irresponsible way.</dd>
+
+	<dt>Use redundancy and diversity to reduce risk</dt>
+	<dd>Keep multiple copies of data and use diverse infrastructure so that an infrastructure vulnerability cannot be the single point of failure.</dd>
+	
+	<dt>Specify the format of all system inputs</dt>
+	<dd>If input formats are known then you can check that all inputs are within range so that unexpected inputs don't cause problems.</dd>
+
+	<dt>Compartmentalize your assets</dt>
+	<dd>Organize the system so that assets are in separate areas and users only have access to the information that they need rather than all system information.</dd>
+
+	<dt>Design for deployment</dt>
+	<dd>Design the system to avoid deployment problems</dd>
+
+	<dt>Design for recoverability</dt>
+	<dd>Design the system to simplify recoverability after a successful attack.</dd>
+</dl>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body></html>

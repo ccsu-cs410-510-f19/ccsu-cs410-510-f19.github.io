@@ -1,0 +1,321 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="../css/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>Design and Implementation</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 7</p>
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p>Software design and implementation is the stage in the software engineering process at which an executable software system is developed.
+<b>Software design</b> is a creative activity in which you identify software components and their relationships, based on a customer's requirements.
+<b>Implementation</b> is the process of realizing the design as a program. These two activities are invariably inter-leaved. </p>
+
+<p>In a wide range of domains, it is now possible to buy <b>commercial off-the-shelf systems</b> (COTS) that can be adapted and tailored to the users' requirements.
+When you develop an application in this way, the design process becomes concerned with how to use the configuration features of that system to deliver the system requirements. </p>
+
+
+
+
+
+<div class="Underhead">
+<p>Object-oriented design using the UML</p></div>
+
+<p>Structured object-oriented design processes involve developing a number of different <b>system models</b>.
+They require a lot of effort for development and maintenance and, for small systems, this may not be cost-effective.
+However, for <b>large systems</b> developed by different groups design models are an important communication mechanism.
+Common activities in these processes include:</p>
+<ul>
+    <li>Define the context and modes of use of the system;</li>
+    <li>Design the system architecture;</li>
+    <li>Identify the principal system objects;</li>
+    <li>Develop design models;</li>
+    <li>Specify object interfaces.</li>
+</ul>
+
+
+
+
+<div class="Underhead">
+<p>System context and interactions</p></div>
+
+<p>Understanding  the relationships between the software that is being designed and its <b>external environment</b> is essential for deciding how to provide the required system functionality and how to structure the system to communicate with its environment.
+Understanding of the context also lets you establish the <b>boundaries</b> of the system. Setting the system boundaries helps you decide what features are implemented in the system being designed and what features are in other associated systems. </p>
+
+<p>A system <b>context</b> is a <b>structural model</b> (e.g., a class diagram) that demonstrates the other systems in the environment of the system being developed.</p>
+
+<p>An <b>interaction</b> model is a <b>dynamic model</b> (e.g., a use case diagram + structured natural language description) that shows how the system interacts with its environment as it is used.</p>
+
+<p><img src="./07-DesignAndImplementation_files/07-context_model.png" width="50%" style="vertical-align: text-top;"> &nbsp;
+   <img src="./07-DesignAndImplementation_files/07-interaction_model.png" width="35%" style="vertical-align: text-top;"></p>
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>System</b></td>
+        <td><b>Weather station</b></td>
+    </tr>
+    <tr>
+        <td>Use case</td>
+        <td>Report weather</td>
+    </tr>
+    <tr>
+        <td>Actors</td>
+        <td>Weather information system, Weather station</td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>The weather station sends a summary of the weather data that has been collected from the instruments in the collection period to the weather information system. The data sent are the maximum, minimum, and average ground and air temperatures; the maximum, minimum, and average air pressures; the maximum, minimum, and average wind speeds; the total rainfall; and the wind direction as sampled at five-minute intervals.</td>
+    </tr>
+    <tr>
+        <td>Stimulus</td>
+        <td>The weather information system establishes a satellite communication link with the weather station and requests transmission of the data.</td>
+    </tr>
+    <tr>
+        <td>Response</td>
+        <td>The summarized data is sent to the weather information system.</td>
+    </tr>
+    <tr>
+        <td>Comments</td>
+        <td>Weather stations are usually asked to report once per hour but this frequency may differ from one station to another and may be modified in the future.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Architectural design</p></div>
+
+<p>Once interactions between the system and its environment have been understood, you use this information for designing the system architecture.
+You identify the <b>major components</b> that make up the system and <b>their interactions</b>, and then may organize the components using an architectural pattern (e.g. a layered or client-server model). </p>
+
+<p><img src="./07-DesignAndImplementation_files/07-high_level_architecture.png" width="70%"></p>
+
+
+<p><b>Identifying object classes</b> is often a difficult part of object oriented design.
+There is no 'magic formula' for object identification. It relies on the skill, experience and domain knowledge of system designers.
+Object identification is an iterative process. You are unlikely to get it right first time. <b>Approaches</b> to object identification include:</p>
+<ul>
+    <li>Use a <b>grammatical approach</b> based on a natural language description of the system.</li>
+    <li>Base the identification on <b>tangible things</b> in the application domain.</li>
+    <li>Use a <b>behavioral approach</b> and identify objects based on what participates in what behavior.</li>
+    <li>Use a <b>scenario-based analysis</b>.  The objects, attributes and methods in each scenario are identified.</li>
+</ul>
+
+
+
+
+
+<div class="Underhead">
+<p>Design models</p></div>
+
+<p>Design models show the objects and object classes and relationships between these entities.
+<b>Static models</b> describe the static structure of the system in terms of object classes and relationships.
+<b>Dynamic models</b> describe the dynamic interactions between objects.</p>
+
+
+<p><b>Subsystem models</b> show logical groupings of objects into coherent subsystems. These are represented using a form of class diagram with each subsystem shown as a package with enclosed objects. Subsystem models are static (structural) models.</p>
+
+<p><b>Sequence models</b> show the sequence of object interactions. These are represented using a UML sequence or a collaboration diagram. Sequence models are dynamic models.</p>
+
+<p><img src="./07-DesignAndImplementation_files/07-sequence_model.png" width="80%"></p>
+
+
+<p><b>State machine models</b> show how individual objects change their state in response to events. These are represented in the UML using state diagrams. State machine models are dynamic models. State diagrams are useful high-level models of a system or an object's run-time behavior.</p>
+
+<p><img src="./07-DesignAndImplementation_files/07-state_model.png" width="85%"></p>
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Interface specification</p></div>
+
+<p><b>Object interfaces</b> have to be specified so that the objects and other components can be <b>designed in parallel</b>.
+Designers should avoid designing the interface representation but should hide this in the object itself.
+Objects may have several interfaces which are viewpoints on the methods provided.
+The UML uses class diagrams  for interface specification but Java may also be used.</p>
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Design patterns</p></div>
+
+<p>A design pattern is a way of <b>reusing abstract knowledge</b> about a problem and its solution.
+A pattern is a description of the problem and the essence of its solution.
+It should be sufficiently abstract to be reused in different settings.
+Pattern descriptions usually make use of object-oriented characteristics such as inheritance and polymorphism.</p>
+
+<p>Design pattern elements:</p>
+<dl>
+    <dt>Name</dt>
+    <dd>A meaningful pattern identifier</dd>
+
+    <dt>Problem description</dt>
+    <dd>A common situation where this pattern is applicable</dd>
+
+    <dt>Solution description</dt>
+    <dd>Not a concrete design but a template for a design solution that can be instantiated in different ways</dd>
+
+    <dt>Consequences</dt>
+    <dd>The results and trade-offs of applying the pattern</dd>
+</dl>
+
+
+
+<p><b>Example: the Observer pattern</b></p>
+<p><img src="./07-DesignAndImplementation_files/07-observer.png" width="50%"></p>
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Pattern name</b></td>
+        <td><b>Observer</b></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>Separates the display of the state of an object from the object itself and allows alternative displays to be provided. When the object state changes, all displays are automatically notified and updated to reflect the change.</td>
+    </tr>
+    <tr>
+        <td>Problem description</td>
+        <td>In many situations, you have to provide multiple displays of state information, such as a graphical display and a tabular display. Not all of these may be known when the information is specified. All alternative presentations should support interaction and, when the state is changed, all displays must be updated.<br>
+        This pattern may be used in all situations where more than one display format for state information is required and where it is not necessary for the object that maintains the state information to know about the specific display formats used.</td>
+    </tr>
+    <tr>
+        <td>Solution description</td>
+        <td>This involves two abstract objects, Subject and Observer, and two concrete objects, ConcreteSubject and ConcreteObject, which inherit the attributes of the related abstract objects. The abstract objects include general operations that are applicable in all situations. The state to be displayed is maintained in ConcreteSubject, which inherits operations from Subject allowing it to add and remove Observers (each observer corresponds to a display) and to issue a notification when the state has changed.<br>
+        The ConcreteObserver maintains a copy of the state of ConcreteSubject and implements the Update() interface of Observer that allows these copies to be kept in step. The ConcreteObserver automatically displays the state and reflects changes whenever the state is updated.</td>
+    </tr>
+    <tr>
+        <td>Consequences</td>
+        <td>The subject only knows the abstract Observer and does not know details of the concrete class. Therefore there is minimal coupling between these objects. Because of this lack of knowledge, optimizations that enhance display performance are impractical. Changes to the subject may cause a set of linked updates to observers to be generated, some of which may not be necessary.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Reuse</p></div>
+
+<p>From the 1960s to the 1990s, most new software was developed from scratch, by writing all code in a high-level programming language.
+The only significant reuse or software was the reuse of functions and objects in programming language libraries.
+Costs and schedule pressure mean that this approach became increasingly unviable, especially for commercial and Internet-based systems.
+An approach to development based around the reuse of existing software emerged and is now generally used for business and scientific software. </p>
+
+<p><b>Levels</b> of reuse:</p>
+<ul>
+    <li>The <b>abstraction</b> level: don't reuse software directly but use knowledge of successful abstractions in the software design. </li>
+    <li>The <b>object</b> level: directly reuse objects from a library rather than writing the code yourself. </li>
+    <li>The <b>component</b> level: components (collections of objects and object classes) are reused in application systems. </li>
+    <li>The <b>system</b> level: entire application systems are reused.</li>
+</ul>
+
+<p><b>Costs</b> of reuse:</p>
+<ul>
+    <li>The costs of the <b>time</b> spent in looking for software to reuse and assessing whether or not it meets your needs. </li>
+    <li>Where applicable, the costs of <b>buying</b> the reusable software. For large off-the-shelf systems, these costs can be very high.</li>
+    <li>The costs of <b>adapting and configuring</b> the reusable software components or systems to reflect the requirements of the system that you are developing.</li>
+    <li>The costs of <b>integrating</b> reusable software elements with each other (if you are using software from different sources) and with the new code that you have developed. </li>
+</ul>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Configuration management</p></div>
+
+<p>Configuration management is the name given to the general process of <b>managing a changing software system</b>.
+The aim of configuration management is to support the system integration process so that all developers can access the project code and documents in a controlled way, find out what changes have been made, and compile and link components to create a system. Configuration management activities include:</p>
+
+<ul>
+    <li><b>Version management</b>, where support is provided to keep track of the different versions of software components. Version management systems include facilities to coordinate development by several programmers. </li>
+    <li><b>System integration</b>, where support is provided to help developers define what versions of components are used to create each version of a system. This description is then used to build a system automatically by compiling and linking the required components.</li>
+    <li><b>Problem tracking</b>, where support is provided to allow users to report bugs and other problems, and to allow all developers to see who is working on these problems and when they are fixed. </li>
+</ul>
+
+
+
+
+
+<div class="Underhead">
+<p>Host-target development</p></div>
+
+<p>Most software is developed on one computer (the host, <b>development platform</b>), but runs on a separate machine (the target, <b>execution platform</b>).
+A platform is more than just hardware; it includes the installed operating system plus other supporting software such as a database management system or, for development platforms, an interactive development environment (IDE).
+Development platform usually has different installed software than execution platform; these platforms may have different architectures. Mobile  app development (e.g. for Android) is a good example.</p>
+
+<p>Typical development platform tools include:</p>
+<ul>
+    <li>An integrated compiler and syntax-directed editing system that allows you to create, edit and compile code.</li>
+    <li>A language debugging system.</li>
+    <li>Graphical editing tools, such as tools to edit UML models.</li>
+    <li>Testing tools, such as JUnit that can automatically run a set of tests on a new version of a program.</li>
+    <li>Project support tools that help you organize the code for different development projects.</li>
+</ul>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Open source development</p></div>
+
+<p>Open source development is an approach to software development in which the <b>source code</b> of a software system is <b>published</b> and <b>volunteers</b> are invited to <b>participate in the development process</b>.
+Its roots are in the <a href="http://www.fsf.org/">Free Software Foundation</a>, which advocates that source code should not be proprietary but rather should always be available for users to examine and modify as they wish.
+Open source software extended this idea by using the Internet to recruit a much larger population of volunteer developers. Many of them are also users of the code. </p>
+
+
+<p>The best-known open source product is, of course, the Linux operating system which is widely used as a server system and, increasingly, as a desktop environment.
+Other important open source products are Java, the Apache web server and the mySQL database management system. </p>
+
+<p>A <b>fundamental principle</b> of open-source development is that <b>source code</b> should be <b>freely available</b>, this does not mean that anyone can do as they wish with that code. Typical <b>licensing models</b> include:</p>
+<ul>
+    <li>The GNU <b>General Public License</b> (GPL). This is a so-called 'reciprocal' license that means that if you use open source software that is licensed under the GPL license, then you must make that software open source. </li>
+    <li>The GNU <b>Lesser General Public License</b> (LGPL) is a variant of the GPL license where you can write components that link to open source code without having to publish the source of these components. </li>
+    <li>The <b>Berkley Standard Distribution</b> (BSD) License. This is a non-reciprocal license, which means you are not obliged to re-publish any changes or modifications made to open source code. You can include the code in proprietary systems that are sold.</li>
+</ul>
+
+
+
+</div>
+
+
+</body></html>

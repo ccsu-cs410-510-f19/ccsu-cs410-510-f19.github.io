@@ -1,0 +1,270 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="../css/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>System Dependability</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 10</p>
+
+
+
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p>For many computer-based systems, <b>the most important system property is the dependability</b> of the system.
+The dependability of a system reflects <b>the user's degree of trust</b> in that system. It reflects the extent of the user's confidence that it will operate as users expect and that it will not 'fail' in normal use.
+Dependability covers the related systems attributes of reliability, availability and security. These are all inter-dependent.</p>
+
+
+<p>System failures may have <b>widespread effects</b> with large numbers of people affected by the failure.
+Systems that are not dependable and are unreliable, unsafe or insecure may be <b>rejected by their users</b>.
+The <b>costs of system failure</b> may be very high if the failure leads to <b>economic losses</b> or <b>physical damage</b>.
+Undependable systems may cause information loss with a <b>high consequent recovery cost</b>.</p>
+
+<p>Causes of failure:</p>
+<dl>
+    <dt>Hardware failure</dt>
+    <dd>Hardware fails because of design and manufacturing errors or because components have reached the end of their natural life.</dd>
+
+    <dt>Software failure</dt>
+    <dd>Software fails due to errors in its specification, design or implementation.</dd>
+
+    <dt>Operational failure</dt>
+    <dd>Human operators make mistakes. Now perhaps the largest single cause of system failures in socio-technical systems.</dd>
+</dl>
+
+
+
+
+
+<div class="Underhead">
+<p>Dependability properties</p></div>
+
+
+<p><b>Principal properties of dependability:</b></p>
+<p><img src="./10-SystemDependability_files/10-dependability_properties.png" width="100%"></p>
+
+<p>Principal properties:</p>
+<ul>
+	<li><b>Availability</b>: The probability that the system will be up and running and able to deliver useful services to users.</li>
+	<li><b>Reliability</b>: The probability that the system will correctly deliver services as expected by users.</li>
+	<li><b>Safety</b>: A judgment of how likely it is that the system will cause damage to people or its environment.</li>
+	<li><b>Security</b>: A judgment of how likely it is that the system can resist accidental or deliberate intrusions.</li>
+	<li><b>Resilience</b>: A judgment of how well a system can maintain the continuity of its critical services in the presence of disruptive events such as equipment failure and cyberattacks.</li>
+</ul>
+
+
+<p>Other properties of software dependability:</p>
+<ul>
+    <li><b>Repairability</b> reflects the extent to which the system can be repaired in the event of a failure;</li>
+    <li><b>Maintainability</b> reflects the extent to which the system can be adapted to new requirements;</li>
+    <li><b>Survivability</b> reflects the extent to which the system can deliver services whilst under hostile attack;</li>
+    <li><b>Error tolerance</b> reflects the extent to which user input errors can be avoided and tolerated.</li>
+</ul>
+
+
+<p>Many dependability attributes depend on one another. Safe system operation depends on the system being available and operating reliably.
+A system may be unreliable because its data has been corrupted by an external attack.
+Denial of service attacks on a system are intended to make it unavailable.
+If a system is infected with a virus, you cannot be confident in its reliability or safety.</p>
+
+
+
+<p><b>How to achieve dependability?</b></p>
+<ul>
+	<li>Avoid the introduction of accidental errors when developing the system.</li>
+	<li>Design V &amp; V processes that are effective in discovering residual errors in the system.</li>
+	<li>Design systems to be fault tolerant so that they can continue in operation when faults occur.</li>
+	<li>Design protection mechanisms that guard against external attacks.</li>
+	<li>Configure the system correctly for its operating environment.</li>
+	<li>Include system capabilities to recognize and resist cyberattacks.</li>
+	<li>Include recovery mechanisms to help restore normal system service after a failure.</li>
+</ul>
+
+<p>Dependability <b>costs tend to increase exponentially</b> as increasing levels of dependability are required because of two reasons.
+The use of more <b>expensive development techniques</b> and hardware that are required to achieve the higher levels of dependability.
+The <b>increased testing and system validation</b> that is required to convince the system client and regulators that the required levels of dependability have been achieved.</p>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Socio-technical systems</p></div>
+
+<p>Software engineering is not an isolated activity but is part of a broader <b>systems engineering</b> process.
+Software systems are therefore not isolated systems but are essential components of broader systems that have a human, social or organizational purpose.</p>
+
+<ul>
+   <li><b>Equipment</b>: hardware devices, some of which may be computers; most devices will include an embedded system of some kind.</li>
+   <li><b>Operating system</b>: provides a set of common facilities for higher levels in the system.</li>
+   <li><b>Communications and data management</b>: middleware that provides access to remote systems and databases.</li>
+   <li><b>Application systems</b>: specific functionality to meet some organization requirements.</li>
+   <li><b>Business processes</b>: a set of processes involving people and computer systems that support the activities of the business.</li>
+   <li><b>Organizations</b>: higher level strategic business activities that affect the operation of the system.</li>
+   <li><b>Society</b>: laws, regulation and culture that affect the operation of the system.</li>
+</ul>
+
+<p>There are <b>interactions and dependencies</b> between the layers in a system and changes at one level <b>ripple through the other levels</b>.
+For dependability, a systems perspective is essential.</p>
+
+
+<p><img src="./10-SystemDependability_files/10-sociotechnical_systems.png" width="70%"></p>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Emergent properties</p></div>
+
+<p>Emergent properties are properties of the <b>system as a whole</b> rather than properties that can be derived from the properties of components of a system.
+Emergent properties are a consequence of the <b>relationships between system components</b>.
+They can therefore only be assessed and measured once the components have been integrated into a system.</p>
+
+
+<p>Some examples of emergent properties:</p>
+
+
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Property</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+       <td>Volume</td>
+       <td>The volume of a system (the total space occupied) varies depending on how the component assemblies are arranged and connected.</td>
+    </tr>
+    <tr>
+       <td>Reliability</td>
+       <td>System reliability depends on component reliability but unexpected interactions can cause new types of failures and therefore affect the reliability of the system.</td>
+    </tr>
+    <tr>
+       <td>Security</td>
+       <td>The security of the system (its ability to resist attack) is a complex property that cannot be easily measured. Attacks may be devised that were not anticipated by the system designers and so may defeat built-in safeguards.</td>
+    </tr>
+    <tr>
+       <td>Repairability</td>
+       <td>This property reflects how easy it is to fix a problem with the system once it has been discovered. It depends on being able to diagnose the problem, access the components that are faulty, and modify or replace these components.</td>
+    </tr>
+    <tr>
+       <td>Usability</td>
+       <td>This property reflects how easy it is to use the system. It depends on the technical system components, its operators, and its operating environment.</td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+<p>Two types of emergent properties:</p>
+<dl>
+   <dt>Functional properties </dt>
+   <dd>These appear when all the parts of a system work together to achieve some objective. For example, a bicycle has the functional property of being a transportation device once it has been assembled from its components.</dd>
+
+   <dt>Non-functional emergent properties</dt>
+   <dd>Examples are reliability, performance, safety, and security. These relate to the behavior of the system in its operational environment. They are often critical for computer-based systems as failure to achieve some minimal defined level in these properties may make the system unusable.</dd>
+</dl>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Regulation and compliance</p></div>
+
+<p>Many critical systems are <b>regulated systems</b>, which means that their use must be approved by an external regulator before the systems go into service. Examples:
+nuclear systems, air traffic control systems, medical devices.
+A safety and dependability case has to be approved by the regulator. Therefore, critical systems development has to create the evidence to convince a regulator that the system is dependable, safe, and secure.</p>
+
+<p><b>Regulation and compliance</b> (following the rules) applies to the socio-technical system as a whole and not simply the software element of that system.
+Safety-related systems may have to be certified as safe by the regulator.
+To achieve certification, companies that are developing safety-critical systems have to produce an extensive safety case that shows that rules and regulations have been followed.
+It can be as expensive develop the documentation for certification as it is to develop the system itself.
+</p>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Redundancy and diversity</p></div>
+
+<p><b>Redundancy</b>: Keep more than a single version of critical components so that if one fails then a backup is available.<br>
+<b>Diversity</b>: Provide the same functionality in different ways in different components so that they will not fail in the same way. <br>
+Redundant and diverse components should be independent so that they will not suffer from 'common-mode' failures.</p>
+
+
+<p><b>Process activities</b>, such as validation, should not depend on a single approach, such as testing, to validate the system.
+Redundant and diverse process activities are important especially for verification and validation.
+Multiple, different process activities the complement each other and allow for cross-checking help to avoid process errors, which may lead to errors in the software.
+</p>
+
+
+
+
+
+<div class="Underhead">
+<p>Dependable processes</p></div>
+
+<p>To ensure a minimal number of software faults, it is important to have a <b>well-defined, repeatable software process</b>.
+A well-defined repeatable process is one that does not depend entirely on individual skills; rather can be enacted by different people.
+Regulators use information about the process to check if good software engineering practice has been used.
+For fault detection, it is clear that the process activities should include significant effort devoted to verification and validation.</p>
+
+<p>Dependable process characteristics:</p>
+<dl>
+	<dt>Explicitly defined</dt>
+	<dd>A process that has a defined process model that is used to drive the software production process. Data must be collected during the process that proves that the development team has followed the process as defined in the process model.</dd>
+
+	<dt>Repeatable</dt>
+	<dd>A process that does not rely on individual interpretation and judgment. The process can be repeated across projects and with different team members, irrespective of who is involved in the development. </dd>
+</dl>
+
+
+
+<p><b>Dependable process activities</b></p>
+<ul>
+	<li><b>Requirements reviews</b> to check that the requirements are, as far as possible, complete and consistent.</li>
+	<li><b>Requirements management</b> to ensure that changes to the requirements are controlled and that the impact of proposed requirements changes is understood.</li>
+	<li><b>Formal specification</b>, where a mathematical model of the software is created and analyzed. </li>
+	<li><b>System modeling</b>, where the software design is explicitly documented as a set of graphical models, and the links between the requirements and these models are documented. </li>
+	<li><b>Design and program inspections</b>, where the different descriptions of the system are inspected and checked by different people.  </li>
+	<li><b>Static analysis</b>, where automated checks are carried out on the source code of the program. </li>
+	<li><b>Test planning and management</b>, where a comprehensive set of system tests is designed. </li>
+</ul>
+
+
+<p>Dependable software often requires <b>certification</b> so both process and product documentation has to be produced.
+Up-front requirements analysis is also essential to discover requirements and requirements conflicts that may compromise the safety and security of the system.
+These <b>conflict with the general approach in agile development</b> of co-development of the requirements and the system and minimizing documentation.
+An agile process may be defined that incorporates techniques such as iterative development, test-first development and user involvement in the development team.
+So long as the team follows that process and documents their actions, agile methods can be used.
+However, additional documentation and planning is essential so 'pure agile' is impractical for dependable systems engineering.</p>
+
+
+
+
+
+
+
+</div>
+
+
+</body></html>

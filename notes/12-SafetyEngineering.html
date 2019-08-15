@@ -1,0 +1,252 @@
+
+<!-- saved from url=(0073)https://cs.ccsu.edu/~stan/classes/CS410/Notes16/12-SafetyEngineering.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CS 410/510 - Software Engineering class notes</title>
+<link rel="stylesheet" type="text/css" href="./12-SafetyEngineering_files/notes.css">
+</head>
+
+<body>
+
+<div class="SimpleTitle">
+
+<p>CS 410/510 - Software Engineering</p>
+<p>Safety Engineering 
+</p>
+
+</div>
+
+<div class="Content">
+
+<p>Reference: Sommerville, Software Engineering, 10 ed., Chapter 12</p>
+
+
+
+
+
+<div class="Underhead">
+<p>The big picture</p></div>
+
+<p>Safety is a property of a system that reflects the system's ability to operate, normally or abnormally, without <b>danger of causing human injury or death</b> and without <b>damage to the system's environment</b>.
+It is important to consider software safety as most devices whose failure is critical now incorporate software-based control systems. </p>
+
+<p>Safety and reliability are related but distinct.
+Reliability is concerned with conformance to a given specification and delivery of service.
+Safety is concerned with ensuring system cannot cause damage irrespective of whether or not it conforms to its specification.
+System reliability is essential for safety but is not enough.</p>
+
+<p><b>Reliable systems can be unsafe</b>:</p>
+<ul>
+	<li><b>Dormant faults</b> in a system can remain undetected for many years and only rarely arise.</li>
+	<li><b>Specification errors</b>: the system can behave as specified but still cause an accident.</li>
+	<li><b>Hardware failures</b> could generate spurious inputs that are hard to anticipate in the specification.</li>
+	<li><b>Context-sensitive commands</b> (the right command at the wrong time) are often the result of operator error.</li>
+</ul>
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Safety-critical systems</p></div>
+
+<p>In safety-critical systems it is essential that system operation is <b>always safe</b> i.e. the system should never cause damage to people or the system's environment.
+Examples: control and monitoring systems in aircraft, process control systems in chemical manufacture, automobile control systems such as braking and engine management systems.</p>
+
+<p><b>Two levels of safety criticality</b>:</p>
+<ul>
+	<li><b>Primary</b> safety-critical systems: <b>embedded software systems</b> whose failure can cause the associated hardware to fail and directly threaten people. </li>
+	<li><b>Secondary</b> safety-critical systems: systems whose failure results in faults in other (socio-technical) systems, which can then have safety consequences.</li>
+</ul>
+
+
+<p><b>Safety terminology</b></p>
+<div style="padding-left:30px;">
+<table>
+    <tbody><tr>
+        <td><b>Term</b></td>
+		<td><b>Definition</b></td>
+    </tr>
+    <tr>
+		<td>Accident (mishap)</td>
+		<td>An unplanned event or sequence of events which results in human death or injury, damage to property, or to the environment. An overdose of insulin is an example of an accident.</td>
+    </tr>
+    <tr>
+	    <td>Hazard</td>
+		<td>A condition with the potential for causing or contributing to an accident.</td>
+    </tr>
+    <tr>
+	    <td>Damage</td>
+		<td>A measure of the loss resulting from a mishap. Damage can range from many people being killed as a result of an accident to minor injury or property damage. </td>
+    </tr>
+    <tr>
+	    <td>Hazard severity</td>
+		<td>An assessment of the worst possible damage that could result from a particular hazard. Hazard severity can range from catastrophic, where many people are killed, to minor, where only minor damage results. </td>
+    </tr>
+    <tr>
+		<td>Hazard probability</td>
+		<td>The probability of the events occurring which create a hazard. Probability values tend to be arbitrary but range from 'probable' (e.g. 1/100 chance of a hazard occurring) to 'implausible' (no conceivable situations are likely in which the hazard could occur). </td>
+    </tr>
+    <tr>
+		<td>Risk</td>
+		<td>This is a measure of the probability that the system will cause an accident. The risk is assessed by considering the hazard probability, the hazard severity, and the probability that the hazard will lead to an accident. </td>
+    </tr>
+</tbody></table>
+</div>
+
+
+
+<p>Safety achievement strategies:</p>
+<dl>
+	<dt>Hazard avoidance</dt>
+	<dd>The system is designed so that some classes of hazard simply cannot arise.</dd>
+	
+	<dt>Hazard detection and removal</dt>
+	<dd>The system is designed so that hazards are detected and removed before they result in an accident.</dd>
+
+	<dt>Damage limitation</dt>
+	<dd>The system includes protection features that minimize the damage that may result from an accident.</dd>
+</dl>
+
+
+<p>Accidents in complex systems <b>rarely have a single cause</b> as these systems are designed to be resilient to a single point of failure.
+Almost all accidents are a result of combinations of malfunctions rather than single failures.
+It is probably the case that anticipating all problem combinations, especially, in software controlled systems is impossible so achieving complete safety is impossible. However, accidents are inevitable.</p>
+
+
+
+
+
+
+<div class="Underhead">
+<p>Safety requirements</p></div>
+
+<p>The goal of safety requirements engineering is to <b>identify protection requirements</b> that ensure that system failures do not cause injury or death or environmental damage.
+Safety requirements may be 'shall not' requirements i.e. they define situations and events that should never occur.
+Functional safety requirements define: checking and recovery features that should be included in a system, and 
+features that provide protection against system failures and external attacks.</p>
+
+<p><b>Hazard-driven analysis</b>:</p>
+<dl>
+	<dt>Hazard identification</dt>
+	<dd>Identify the hazards that may threaten the system.
+Hazard identification may be based on <b>different types of hazard</b>: physical, electrical, biological, service failure, etc.</dd>
+
+	<dt>Hazard assessment</dt>
+	<dd>The process is concerned with understanding the <b>likelihood that a risk will arise</b> and the potential consequences if an accident or incident should occur.
+Risks may be categorized as: <b>intolerable</b> (must never arise or result in an accident), <b>as low as reasonably practical - ALARP</b> (must minimize the possibility of risk given cost and schedule constraints), and <b>acceptable</b> (the consequences of the risk are acceptable and no extra costs should be incurred to reduce hazard probability).</dd>
+	<dd>The <b>acceptability</b> of a risk is determined by human, social, and political considerations.
+In most societies, the boundaries between the regions are pushed upwards with time i.e. society is less willing to accept risk (e.g., the costs of cleaning up pollution may be less than the costs of preventing it but this may not be socially acceptable).
+Risk assessment is subjective.</dd>
+	<dd>Hazard assessment process: for each identified hazard, assess hazard probability, accident severity, estimated risk, acceptability.</dd>
+	
+	<dt>Hazard analysis</dt>
+	<dd>Concerned with <b>discovering the root causes</b> of risks in a particular system.
+Techniques have been mostly derived from safety-critical systems and can be:
+<b>inductive, bottom-up</b>: start with a proposed system failure and assess the hazards that could arise from that failure; and <b>deductive, top-down</b>: start with a hazard and deduce what the causes of this could be.</dd>
+	<dd><b>Fault-tree analysis</b> is a deductive top-down technique.:
+	<ul>
+		<li>Put the risk or hazard at the root of the tree and identify the system states that could lead to that hazard.</li>
+		<li>Where appropriate, link these with 'and' or 'or' conditions.</li>
+		<li>A goal should be to minimize the number of single causes of system failure.</li>
+	</ul>
+	</dd>
+	
+	<dt>Risk reduction</dt>
+	<dd>The aim of this process is to <b>identify dependability requirements</b> that specify how the risks should be managed and ensure that accidents/incidents do not arise.
+Risk reduction strategies: hazard avoidance; hazard detection and removal; damage limitation.</dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+<div class="Underhead">
+<p>Safety engineering processes</p></div>
+
+<p>Safety engineering processes are based on reliability engineering processes. <b>Regulators may require evidence</b> that safety engineering processes have been used in system development.</p>
+
+<p>Agile methods are not usually used for safety-critical systems engineering. Extensive process and product documentation is needed for system regulation, which contradicts the focus in agile methods on the software itself.
+A detailed safety analysis of a complete system specification is important, which contradicts the interleaved development of a system specification and program. However, some agile techniques such as test-driven development may be used.
+</p>
+
+ 
+
+<p><b>Process assurance</b> involves defining a dependable process and ensuring that this process is followed during the system development.
+Process assurance focuses on:</p>
+<ul>
+	<li><b>Do we have the right processes?</b> Are the processes appropriate for the level of dependability required. Should include requirements management, change management, reviews and inspections, etc.</li>
+	<li><b>Are we doing the processes right?</b> Have these processes been followed by the development team.</li>
+</ul>
+
+
+<p><b>Process assurance is important for safety-critical systems development</b>:
+accidents are rare events so testing may not find all problems; safety requirements are sometimes 'shall not' requirements so cannot be demonstrated through testing.
+Safety assurance activities may be included in the software process that record the analyses that have been carried out and the people responsible for these.</p>
+
+<p>Safety-related process activities:</p>
+<ul>
+	<li>Creation of a hazard logging and monitoring system;</li>
+	<li>Appointment of project safety engineers who have explicit responsibility for system safety;</li>
+	<li>Extensive use of safety reviews;</li>
+	<li>Creation of a safety certification system where the safety of critical components is formally certified;</li>
+	<li>Detailed configuration management.</li>
+</ul>
+
+
+<p><b>Formal methods</b> can be used when a mathematical specification of the system is produced.
+They are the ultimate static verification technique that may be used at different stages in the development process.
+A formal specification may be developed and mathematically analyzed for consistency. This helps discover specification errors and omissions.
+Formal arguments that a program conforms to its mathematical specification may be developed. This is effective in discovering programming and design errors.</p>
+
+<dl>
+	<dt>Advantages of formal methods</dt>
+	<dd>Producing a mathematical specification requires a detailed analysis of the requirements and this is likely to uncover errors.
+Concurrent systems can be analyzed to discover race conditions that might lead to deadlock. Testing for such problems is very difficult.
+They can detect implementation errors before testing when the program is analyzed alongside the specification.</dd>
+	<dt>Disadvantages of formal methods</dt>
+	<dd>Require specialized notations that cannot be understood by domain experts.
+Very expensive to develop a specification and even more expensive to show that a program meets that specification.
+Proofs may contain errors.
+It may be possible to reach the same level of confidence in a program more cheaply using other V &amp; V techniques.</dd>
+</dl>
+
+<p><b>Model checking</b> involves creating an extended finite state model of a system and, using a specialized system (a model checker), checking that model for errors.
+The model checker <b>explores all possible paths through the model</b> and checks that a user-specified property is valid for each path.  
+Model checking is particularly valuable for verifying concurrent systems, which are hard to test.
+Although model checking is computationally very expensive, it is now practical to use it in the verification of small to medium sized critical systems. 
+
+
+</p><p><b>Static program analysis</b> uses software tools for source text processing.
+They parse the program text and try to discover potentially erroneous conditions and bring these to the attention of the V &amp; V team.
+They are very effective as an aid to inspections - they are a supplement to but not a replacement for inspections.
+
+</p><p>Three levels of static analysis:</p>
+<dl>
+	<dt>Characteristic error checking</dt>
+	<dd>The static analyzer can check for patterns in the code that are characteristic of errors made by programmers using a particular language.</dd>
+
+	<dt>User-defined error checking</dt>
+	<dd>Users of a programming language define error patterns, thus extending the types of error that can be detected. This allows specific rules that apply to a program to be checked.</dd>
+
+	<dt>Assertion checking</dt>
+	<dd>Developers include formal assertions in their program and relationships that must hold. The static analyzer symbolically executes the code and highlights potential problems.</dd>
+</dl>
+
+<p>Static analysis is particularly valuable when a language such as C is used which has weak typing and hence many errors are undetected by the compiler.
+Particularly valuable for security checking - the static analyzer can discover areas of vulnerability such as buffer overflows or unchecked inputs.
+Static analysis is now routinely used in the development of many safety and security critical systems.</p>
+
+
+
+
+</div>
+
+
+</body></html>
